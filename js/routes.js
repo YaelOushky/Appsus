@@ -1,22 +1,21 @@
-
+import homePage from './pages/home-page.cmp.js';
+import mailApp from './apps/mail/pages/email-app.cmp.js';
+import keepApp from './apps/keep/pages/note-app.cmp.js';
 
 const routes = [
-    // {
-    //     path: '/',
-    //     component: homePage
-    // },
-    // {
-    //     path: '/book',
-    //     component: bookApp
-    // },
-    // {
-    //     path: '/book/add',
-    //     component: bookAdd
-    // },
-    // {
-    //     path: '/book/:bookId',
-    //     component: bookDetails
-    // },
+    {
+        path: '/',
+        component: homePage
+    },
+    {
+        path: '/mail',
+        component: mailApp
+    },
+    {
+        path: '/keep',
+        component: keepApp
+    },
+  
 ];
 
 
