@@ -1,14 +1,14 @@
 export default {
     template: `
         <header class="app-header">
-            <div>
+            <div >
                 <p class="fas fa-grip-lines icon"></p>
                 <img src="img/logo.png">
                 <!-- <p >
                     <span>Keep</span> <img src="img/logo-keep.png" >
                 </p> -->
             </div>
-                <div class="">
+                <div class="search-container">
                     <input class="search" aria-label="חיפוש" autocomplete="off" placeholder="Search" role="combobox" value="" name="q" type="text">
                     <i class="fas fa-search icon"></i>
                 </div>
