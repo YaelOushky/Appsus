@@ -1,11 +1,11 @@
 export default {
-    props: ['info'],
+    props: ['note'],
     template: `
         <div class="row">
             <label>
                 {{info.title}}
             </label>
-                <img :src="info.url" alt="">
+                <img :src="note.info.url" alt="">
         </div>
     `,
     data() {

@@ -4,7 +4,7 @@ export default {
         <div class="todos" >
             <label>
                 {{info.label}}
-                <template v-for="todo in info.todos.length">                      
+                <template v-for="todo in info.todos">                      
                    
                 <input type="text" v-model="txt" @blur="reportVal" />
                 </template>

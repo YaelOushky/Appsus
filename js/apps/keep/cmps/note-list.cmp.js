@@ -17,10 +17,9 @@ export default {
                 <note-preview :note="note"  @remove="remove(note.id)" @openEdit ="openEdit" @save="changeColor"/>
             </li>
         </ul>
-        <note-details class="note-details" v-if="currNote" :note="currNote" @update="update"></note-details>
+        <note-details class="note-details" v-if="currNote" :note="currNote" @update="update" @closeModal="closeEdit"></note-details>
     </section>
     `,
-    // @click.native="selected(book)"
     data() {
         return {
             currNote: null
@@ -38,6 +37,9 @@ export default {
                 .then(note => {
                     this.currNote = note
                 })
+        },
+        closeEdit() {
+            this.currNote = null
         },
         changeColor(note) {
             noteService.save(note)

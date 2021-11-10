@@ -2,11 +2,14 @@ export default {
     props: ['note'],
     components: {},
     template: `
-        <section class="note-preview" :class="bcg" @click="openEdit(note.id)">
+        <section class="note-preview" :class="bcg" >
             <a @click="remove" >X</a>
-            <h3> Title: <span>{{note.title}}</span></h3>
-            <p>Subtitle: {{note.info.txt}}</p>
-            <select v-model="note.style.backgroundColor" @change="save(note)">
+            <div @click="openEdit(note.id)">
+
+                <h3> Title: <span>{{note.title}}</span></h3>
+                <p>Subtitle: {{note.info.txt}}</p>
+            </div>
+            <select v-model="note.style.backgroundColor" @change.stop="save(note)">
                 <option>white</option>
                 <option>coral</option>
                 <option>pink</option>
@@ -41,7 +44,6 @@ export default {
         },
         openEdit(noteId) {
             this.$emit('openEdit', noteId)
-
         },
 
     },
