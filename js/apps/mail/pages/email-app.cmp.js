@@ -1,22 +1,25 @@
 import emailList from '../cmps/email-list.cmp.js';
+import emailFilter from '../cmps/email-filter.cmp.js';
 import { emailService } from '../services/email.service.js';
 
 export default {
     components: {
         emailList,
-        emailService
+        emailService,
+        emailFilter
     },
     template: `
         <section class="email-app app-main">
             <h1>email app</h1>
-            <email-list :emails="emails" @selected="selectMail"  @remove="deleteEmail"/>
+            <email-filter @filtered="setFilter" />
+            <email-list :emails="MailToShow" @selected="selectMail"  @remove="deleteEmail"/>
         </section>
     `,
     data() {
         return {
             emails: null,
-            selectedMail: null
-
+            selectedMail: null,
+            filterBy: null,
         };
     },
     created() {
@@ -27,6 +30,7 @@ export default {
             emailService.query()
                 .then(emails => {
                     this.emails = emails
+                    this.emailsToShow = emails
                 });
         },
         selectMail(mail) {
@@ -53,6 +57,30 @@ export default {
             //     eventBus.$emit('showMsg', msg);
             // });
         },
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
 
+        }
+
+    },
+    computed: {
+        MailToShow() {
+            if (!this.filterBy) return this.emails;
+            if (this.filterBy === 'inbox') {
+                return this.emails.filter(email => !email.isTrash)
+            }
+            if (this.filterBy === 'starred') {
+                return this.emails.filter(email => email.isStar)
+            }
+            if (this.filterBy === 'drafts') {
+               return this.emails.filter(email => email.isDrafts)
+            }
+            if (this.filterBy === 'trash') {
+               return this.emails.filter(email => email.isTrash)
+            }
+            if (this.filterBy === 'sent') {
+                // return console.log(sent);
+            }
+        },
     },
 }
