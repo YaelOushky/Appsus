@@ -10,7 +10,6 @@ export default {
     },
     template: `
         <section class="email-app app-main">
-            <h1>email app</h1>
             <email-filter @filtered="setFilter" />
             <email-list :emails="MailToShow" @selected="selectMail"  @remove="deleteEmail"/>
         </section>
