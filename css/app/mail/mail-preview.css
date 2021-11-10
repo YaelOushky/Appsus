@@ -1,79 +1,89 @@
-
-.email-app{
-    justify-content: space-between;
-    display: grid;
-    grid-template-areas: "gmail-filter email-list ";
+.email-app {
+  justify-content: space-between;
+  display: grid;
+  grid-template-areas: "gmail-filter email-list ";
 }
-.email-list{
-    width: 1200px;
+.email-list {
+  width: 1200px;
 }
 
 .email-list li {
-    list-style: none;
+  list-style: none;
 }
 
 .email-preview {
-    display: flex;
-    border: 0.8px solid rgb(223, 222, 222);
-    padding: 20px;
-    justify-content: space-between;
-    background-color: rgba(233, 233, 233, 0.726);
-    /* border-radius: 10px; */
-    /* max-width: 900px; */
-    margin-inline-end: 40px;
+  display: flex;
+  border: 0.8px solid rgb(223, 222, 222);
+  padding: 20px;
+  justify-content: space-between;
+  background-color: rgba(233, 233, 233, 0.726);
+  /* border-radius: 10px; */
+  /* max-width: 900px; */
+  margin-inline-end: 40px;
 }
-.email-preview-container{
+.email-preview-container {
 }
 
 .email-preview:hover {
-    background-color: rgba(250, 250, 250, 0.911);
-    box-shadow: inset 0 -2px 0 0 rgb(100 121 143 / 12%);
+  background-color: rgba(250, 250, 250, 0.911);
+  box-shadow: inset 0 -2px 0 0 rgb(100 121 143 / 12%);
 }
 
 .email-details {
-    font-size: 20px;
-    /* max-width: 900px; */
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(238, 237, 237, 0.281);
-    gap: 10px;
-    /* height: 600px; */
+  font-size: 20px;
+  /* max-width: 900px; */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(238, 237, 237, 0.281);
+  gap: 10px;
+  /* height: 600px; */
 }
 
 .email-title {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .send-details {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    /* justify-content: space-around; */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  /* justify-content: space-around; */
 }
 
-.gmail-filter{
-    margin-top: 15px;
-    margin-inline-start: 40px;
+.gmail-filter {
+  margin-top: 15px;
+  margin-inline-start: 40px;
 }
 
 .filter {
-    background-color: rgba(223, 222, 222, 0.342);
-    margin-bottom: 2px;
-    border-radius: 3px;
-    border: 0.5px solid rgba(223, 222, 222, 0.342);
-    display: flex;
-    gap: 40px;
-    padding: 15px;
+  background-color: rgba(223, 222, 222, 0.342);
+  margin-bottom: 2px;
+  border-radius: 3px;
+  border: 0.5px solid rgba(223, 222, 222, 0.342);
+  display: flex;
+  gap: 40px;
+  padding: 15px;
 }
 
-.filter:hover{
-    border: 0.5px solid rgba(209, 209, 209, 0.884);
+.filter:hover {
+  border: 0.5px solid rgba(209, 209, 209, 0.884);
 }
 
 .checked {
-    background-color: pink;
+    color: red;
 }
+
+.select {
+  color: red;
+  border: 0.5px solid red;
+}
+
+.router-link-exact-active {
+  color: rgb(255, 255, 255);
+}
+
+
