@@ -3,8 +3,7 @@ export default {
     template: `
         <div class="row">
             <label>
-                {{info.txt}}
-                <input type="text" v-model="txt" @blur="reportVal" />
+                <input type="text" v-model="info.txt" @blur="reportVal" />
             </label>
         </div>
     `,
@@ -13,9 +12,13 @@ export default {
             txt: '',
         };
     },
+    created() {
+
+    },
     methods: {
         reportVal() {
-            this.$emit('setInput', this.txt);
-        }
+            this.$emit('setInput', this.info);
+        },
+
     }
 };

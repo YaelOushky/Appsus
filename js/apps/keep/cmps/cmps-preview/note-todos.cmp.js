@@ -1,15 +1,16 @@
 export default {
     props: ['info'],
     template: `
-        <div class="todos">
+        <div class="todos" >
             <label>
                 {{info.label}}
                 <template v-for="todo in info.todos.length">                      
-                    <input type="text" v-model="txt" @blur="reportVal" />
+                   
+                <input type="text" v-model="txt" @blur="reportVal" />
                 </template>
             </label>
-            <div class="edit-note">
-            <input v-model="style" type="color">
+            <div>
+            <!-- <input v-model="style" type="color"> -->
             <!-- <input v-model="url" type="text"> -->
             <!-- <button @click="doUploadImg">img</button> -->
 

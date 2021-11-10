@@ -11,6 +11,8 @@ export const noteService = {
     getById,
     updateNote,
     remove,
+    getEmptyNote,
+    save,
 };
 
 
@@ -27,21 +29,38 @@ function updateNote(note) {
     console.log(note);
     // if (book.reviews) return storageService.put(BOOKS_KEY, book);
     // else
-    return storageService.post(NOTE_KEY, note);
+    return storageService.put(NOTE_KEY, note);
 }
 
 function getById(noteId) {
     return storageService.get(NOTE_KEY, noteId);
 }
 
+function save(note) {
+    if (note.id) return storageService.put(NOTE_KEY, note);
+    else return storageService.post(NOTE_KEY, note);
+}
 
+function getEmptyNote() {
+    return {
+        type: 'noteTxt',
+        info: {
+            txt: '',
+            url: '',
+            title: '',
+            todos: [],
+        },
+        style: {
+            backgroundColor: 'white'
+        }
+    }
+}
 
 
 // _createNotes()
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
-    console.log('aa');
     if (!notes || !notes.length) {
         notes = notes = [{
                 id: "n101",
@@ -49,6 +68,9 @@ function _createNotes() {
                 isPinned: true,
                 info: {
                     txt: "Fullstack Me Baby!"
+                },
+                style: {
+                    backgroundColor: 'white'
                 }
             },
             {
@@ -59,7 +81,7 @@ function _createNotes() {
                     title: "Bobi and Me"
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: 'white'
                 }
             },
             {
@@ -71,6 +93,9 @@ function _createNotes() {
                         { txt: "Driving liscence", doneAt: null },
                         { txt: "Coding power", doneAt: 187111111 }
                     ]
+                },
+                style: {
+                    backgroundColor: 'white'
                 }
             }
         ];

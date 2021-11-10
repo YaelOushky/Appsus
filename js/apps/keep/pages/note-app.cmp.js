@@ -13,25 +13,30 @@ export default {
     template: `
         <section class="home-page app-main" v-if="notes">
             <h1>Note app</h1>
-            <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote"></note-list>
-
+            <div class='new-note'>
+                <input v-model="newNote.info.txt" type="text" placeholder="write a note" @blur="add">
+                <!-- <a @click="add">+</a> -->
+            </div>
+            <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote" @update="update"></note-list>
         </section>
     `,
     data() {
         return {
             notes: null,
-            filterBy: null
+            filterBy: null,
+            newNote: null,
         };
     },
     created() {
         this.loadNotes();
+
+        this.newNote = noteService.getEmptyNote()
     },
 
     methods: {
         loadNotes() {
             noteService.query()
                 .then(notes => {
-                    console.log(notes);
                     this.notes = notes
                 });
         },
@@ -60,11 +65,18 @@ export default {
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
+        },
+        add() {
+            noteService.save(this.newNote)
+                .then(console.log(this.notes))
+        },
+        update(note) {
+            noteService.updateNote(note)
+                .then(console.log(this.notes))
         }
     },
     computed: {
         notesToShow() {
-            console.log(this.notes);
             if (!this.filterBy) return this.notes;
 
             // const searchStr = this.filterBy.title.toLowerCase();

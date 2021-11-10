@@ -1,38 +1,30 @@
-import noteTxt from './cmps-preview/note-txt.cmp.js'
-import noteImg from './cmps-preview/note-img.cmp.js'
-import noteTodos from './cmps-preview/note-todos.cmp.js'
-
-
-
-
 export default {
     props: ['note'],
-    components: {
-        noteTxt,
-        noteImg,
-        noteTodos,
-    },
+    components: {},
     template: `
-        <section class="note-preview" :click="openModal">
-        <a @click="remove" >X</a>
-            <component   
-                        :is="note.type" 
-                        :info="note.info" 
-                        @setInput="setInput($event)">
-            </component>
-            <div class="edit-note">
-            <!-- <input v-model="note.title" type="text">
-            <input v-model="note.txt" type="text"> -->
-
-
-            </div>
+        <section class="note-preview" :class="bcg" @click="openEdit(note.id)">
+            <a @click="remove" >X</a>
+            <h3> Title: <span>{{note.title}}</span></h3>
+            <p>Subtitle: {{note.info.txt}}</p>
+            <select v-model="note.style.backgroundColor" @change="save(note)">
+                <option>white</option>
+                <option>coral</option>
+                <option>pink</option>
+                <option>blue</option>
+                <option>green</option>
+                <option>yellow</option>
+            </select>
         </section>
         `,
     // note.style Add color
 
     data() {
         return {
-            answers: []
+            answers: [],
+            currNote: null,
+            color: 'white',
+
+
         };
     },
     methods: {
@@ -40,16 +32,30 @@ export default {
             this.answers = ev;
             console.log('Survey Got ev', ev);
         },
-        save() {
-            console.log('Survey Answers', this.answers);
-        },
-        openModal() {
-            console.log('a');
+        save(note) {
+            console.log('Survey Answers');
+            this.$emit('save', note)
         },
         remove() {
             this.$emit('remove')
-        }
+        },
+        openEdit(noteId) {
+            this.$emit('openEdit', noteId)
+
+        },
 
     },
-    computed: {},
+    computed: {
+        bcg() {
+            const currColor = this.note.style.backgroundColor
+            return {
+                white: currColor === 'white',
+                coral: currColor === 'coral',
+                pink: currColor === 'pink',
+                blue: currColor === 'blue',
+                green: currColor === 'green',
+                yellow: currColor === 'yellow',
+            }
+        },
+    },
 }
