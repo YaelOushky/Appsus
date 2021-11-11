@@ -25,7 +25,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
+    /* text-align: center; */
     border-radius: 2em;
 }
 
@@ -81,6 +81,25 @@
 
 
 /* todos */
+
+.todos-cmp {
+    height: 100%;
+}
+
+.todos-cmp .todos-cmp-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100%;
+}
+
+.todos-cmp .back {
+    position: absolute;
+    text-align: none;
+    top: 8px;
+    right: 8px;
+}
 
 .done {
     text-decoration: line-through;

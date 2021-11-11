@@ -21,9 +21,10 @@ export default {
                 <option>yellow</option>
             </select>
 
-            <label v-show="hover" class="img-up add-img" for="file"  > Add img
-                    <input id="file" type="file" name="image" hidden />
-                </label>
+            <!-- <label  v-show="hover" class="img-up add-img" for="file"  > Add img -->
+                    <input @change="onImgInput" id="file" type="file" name="image"  />
+                <!-- </label> -->
+                <img v-if="note.info.url" :src=note.info.url  height="200" id="myimage">
         </section>
         `,
     // note.style Add color
@@ -35,10 +36,16 @@ export default {
             color: 'white',
             previewImage: null,
             hover: false,
+            img: null,
 
         };
     },
     methods: {
+        onImgInput(e) {
+            const file = e.target.files[0];
+            this.note.info.url = URL.createObjectURL(file);
+            this.save(this.note)
+        },
         setInput(ev) {
             this.answers = ev;
             console.log('Survey Got ev', ev);
@@ -68,5 +75,21 @@ export default {
                 yellow: currColor === 'yellow',
             }
         },
+        loadImageFromInput(event, onImageReady) {
+            element /*choose DOM element*/ .innerHTML = ''
+            var reader = new FileReader()
+
+            console.log(reader);
+            return reader.onload = function(event) {
+                var img = new Image()
+                img.onload = onImageReady.bind(null, img)
+                img.src = event.target.result
+                return img
+            }
+            reader.readAsDataURL(event.target.files[0])
+        },
+        img1() {
+            return this.img
+        }
     },
 }
