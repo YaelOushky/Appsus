@@ -1,7 +1,9 @@
-import noteTxt from '../cmps-preview/note-txt.cmp.js'
-import noteImg from '../cmps-preview/note-img.cmp.js'
-import slectBox from '../cmps-preview/select-box.cmp.js'
-import noteTodos from '../cmps-preview/note-todos.cmp.js'
+import noteTxt from '../cmps/cmps-preview/note-txt.cmp.js'
+import noteImg from '../cmps/cmps-preview/note-img.cmp.js'
+import slectBox from '../cmps/cmps-preview/select-box.cmp.js'
+import noteTodos from '../cmps/cmps-preview/note-todos.cmp.js'
+import { noteService } from '../pages/service/keep-service.js';
+import { eventBus } from '../../../../services/event-bus-service.js';
 
 
 
@@ -19,6 +21,7 @@ export default {
             <component   
                         :is="note.type" 
                         :info="note.info"                                                
+                        :bcg="note.style"                                                
                         @update="update"
                         @closeModal="closeModal">
                     </component>
@@ -33,12 +36,10 @@ export default {
 
     },
     methods: {
-        update(info) {
-            this.note.info = info
-                // console.log(bcg);
-                // , bcg
-                // this.note.style.backgroundColor = bcg
-            this.$emit('update', this.note)
+        update() {
+            noteService.updateNote(this.note)
+                .then(() => eventBus.$emit('updating'))
+
         },
         save() {
             console.log('Survey Answers', this.answers);

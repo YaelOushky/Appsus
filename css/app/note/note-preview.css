@@ -1,8 +1,16 @@
 .note-preview {
     height: 100px;
-    width: 350px;
+    width: 250px;
     border: solid 1px black;
+    border-radius: 10px;
+    text-align: center;
 }
+
+
+/* .note-preview select {
+    background-color: gray;
+} */
+
 
 /* img {
     width: 50px;
@@ -34,7 +42,9 @@
 .edit-note {
     width: 400px;
     height: 300px;
-    background-color: yellow;
+    background-color: #cbf0f8;
+    border-color: #cbf0f8;
+    border: 1px solid gray;
 }
 
 

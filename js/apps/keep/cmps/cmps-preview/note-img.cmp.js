@@ -1,12 +1,25 @@
 export default {
-    props: ['note'],
+    props: ['info', 'bcg'],
     template: `
-        <div class="row">
+        <div class="img-cmp cmp">
+        <a @click="closeModal" title="back" >X</a>
             <label>
                 {{info.title}}
             </label>
-                <img :src="note.info.url" alt="">
-        </div>
+                <img v-if="info.url" :src="info.url" alt="">
+        
+        <input :class=color type="text" v-model="info.txt" @blur="update"  />
+
+        <select :class=color v-model="bcg.backgroundColor" @change="update">
+                <option>white</option>
+                <option>coral</option>
+                <option>pink</option>
+                <option>blue</option>
+                <option>green</option>
+                <option>yellow</option>
+            </select>
+
+            </div>
     `,
     data() {
         return {
@@ -14,8 +27,17 @@ export default {
         };
     },
     methods: {
-        reportVal() {
-            this.$emit('setInput', this.txt);
-        }
+        update() {
+            console.log(this.bcg.backgroundColor);
+            this.$emit('update', this.info, this.bcg);
+        },
+        closeModal() {
+            this.$emit('closeModal');
+        },
+    },
+    computed: {
+        color() {
+            return this.bcg.backgroundColor
+        },
     }
 };

@@ -1,19 +1,20 @@
 export default {
-    props: ['info'],
+    props: ['info', 'bcg'],
     template: `
-        <div class="row">
+        <div class="txt-cmp cmp">
         <a @click="closeModal" title="back" >X</a>
             <label>
-                <input type="text" v-model="info.txt" @blur="update" />
+                {{bcg.backgroundColor}}
+                <input :class=color type="text" v-model="info.txt" @input="update" />
             </label>
-            <!-- <select v-model="bcg.backgroundColor" @change.stop="update">
+            <select :class=color v-model="bcg.backgroundColor" @change="update">
                 <option>white</option>
                 <option>coral</option>
                 <option>pink</option>
                 <option>blue</option>
                 <option>green</option>
                 <option>yellow</option>
-            </select> -->
+            </select>
         </div>
     `,
     data() {
@@ -26,10 +27,16 @@ export default {
     },
     methods: {
         update() {
+            console.log(this.bcg.backgroundColor);
             this.$emit('update', this.info, this.bcg);
         },
         closeModal() {
             this.$emit('closeModal');
+        },
+    },
+    computed: {
+        color() {
+            return this.bcg.backgroundColor
         },
     }
 };

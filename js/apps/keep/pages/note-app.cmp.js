@@ -13,9 +13,9 @@ export default {
     template: `
         <section class="home-page app-main" v-if="notes">
             <h1>Note app</h1>
-            <div class='new-note'>
-                <input v-model="newNote.info.txt" type="text" placeholder="write a note" @blur="add">
-                <!-- <a @click="add">+</a> -->
+            <div class='new-note' @click="longNote">
+                <input v-model="newNote.info.txt" type="text" placeholder="write a note" >
+                <a @click="add">+</a>
             </div>
             <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote" @update="update"></note-list>
         </section>
@@ -29,8 +29,11 @@ export default {
     },
     created() {
         this.loadNotes();
-
+        eventBus.$on('updating', () => this.loadNotes());
         this.newNote = noteService.getEmptyNote()
+    },
+    destroyed() {
+        eventBus.$off('updating');
     },
 
     methods: {
@@ -68,11 +71,18 @@ export default {
         },
         add() {
             noteService.save(this.newNote)
-                .then(console.log(this.notes))
+                .then(() => {
+                    this.loadNotes()
+                    this.newNote = noteService.getEmptyNote()
+                })
+
         },
         update(note) {
             noteService.updateNote(note)
                 .then(console.log(this.notes))
+        },
+        longNote() {
+            console.log('aa');
         }
     },
     computed: {

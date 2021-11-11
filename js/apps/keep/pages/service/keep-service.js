@@ -67,6 +67,7 @@ function _createNotes() {
                 type: "noteTxt",
                 isPinned: true,
                 info: {
+                    url: '',
                     txt: "Fullstack Me Baby!"
                 },
                 style: {
@@ -77,7 +78,7 @@ function _createNotes() {
                 id: "n102",
                 type: "note-img",
                 info: {
-                    // url: "dog.jpg",
+                    url: '',
                     title: "Bobi and Me"
                 },
                 style: {
@@ -88,6 +89,7 @@ function _createNotes() {
                 id: "n103",
                 type: "note-todos",
                 info: {
+                    url: '',
                     label: "Get my stuff together",
                     todos: [
                         { txt: "Driving liscence", doneAt: null },
