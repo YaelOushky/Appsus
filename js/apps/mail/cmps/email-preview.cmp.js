@@ -6,19 +6,22 @@ export default {
         emailService,
     },
     template: `
-        <div class="email-preview"  @click="setDetails(email.id)">
+        <div class="email-preview"  @click="setDetails(email.id)" @mouseover="hover = true"  @mouseleave="hover = false">
         <p class="far fa-star" :class="{checked:isSelect}" @click.stop="changeColor"></p>
            <p>{{email.subject}}</p>
            <p>{{emailDescription}}</p>
            <p>{{email.sentAt}}</p>
+           <div>
+           <i class="fas fa-trash" v-if="hover" @click.stop="deleteEmail(email.id)" ></i>
            <i :class="setIcon" ></i>
-            <!-- <i class="fas fa-envelope-open" v-if="email.isRead"></i> -->
-            <i class="fas fa-trash" @click.stop="deleteEmail(email.id)" ></i>
+            </div>
+           <!-- <i class="fas fa-envelope-open" v-if="email.isRead"></i> -->
         </div>
     `,
     data() {
         return {
-            isSelect : false
+            isSelect : false,
+            hover: false,
         }
     },
     watch: {

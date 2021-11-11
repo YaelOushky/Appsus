@@ -31,12 +31,19 @@
 
 .email-details {
   font-size: 20px;
-  /* max-width: 900px; */
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(238, 237, 237, 0.281);
   gap: 10px;
   /* height: 600px; */
+}
+
+.email-details-container{
+  justify-content: space-between;
+  display: grid;
+  grid-template-areas: "gmail-filter email-details ";
+
 }
 
 .email-title {

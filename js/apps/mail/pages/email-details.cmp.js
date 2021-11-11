@@ -1,11 +1,15 @@
 import { emailService } from '../services/email.service.js';
-
+import emailFilter from '../cmps/email-filter.cmp.js';
 
 export default {
     components: {
         emailService,
+        emailFilter
     },
-    template: `
+    template: `<main class="email-details-container">
+        <section>
+        <email-filter @click="filter"/>
+        </section>
         <section v-if="email" class="email-details app-main">
             <div class="email-title">
                 <p>{{email.subject}}</p>
@@ -25,6 +29,7 @@ export default {
                {{p}}
            </p>
         </section>
+</main>
     `,
     data() {
         return {
@@ -41,6 +46,9 @@ export default {
 
     },
     methods: {
+        filter(){
+            this.$router.push('/mail')
+        }
     },
     computed: {
 
