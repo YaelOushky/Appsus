@@ -11,18 +11,22 @@ export default {
         noteList,
     },
     template: `
-        <section class="home-page app-main" v-if="notes">
-            <h1>Note app</h1>
+        <section class="app-note app-main" v-if="notes">
             
-            
-            <input v-model="newNote.info.txt" type="text" placeholder="write a note" @click="longNote">
-            <a @click="add">+</a>
-            
-            <div class='new-note'  v-show="editNewNote">
-                
-                <input v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >
+            <div class=new-note-edit>
+        <input class="new-note-title" v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >    
 
-                <select v-model="newNote.style.backgroundColor" @change.stop="add" >
+                <div class="start-show">
+                    <input v-model="newNote.info.txt" type="text" placeholder="write a note" @click="longNote">
+                    <i class="fas fa-plus" @click="add"></i>
+
+                </div>
+            
+            <div class='icons-new-note'  v-show="editNewNote">
+                
+                <!-- <input v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" > -->
+               
+                <select class="fas fa-palette" v-model="newNote.style.backgroundColor" id="select"  name="color" >
                 <option>white</option>
                 <option>coral</option>
                 <option>pink</option>
@@ -30,12 +34,22 @@ export default {
                 <option>green</option>
                 <option>yellow</option>
             </select>
+        
 
-            <label class="img-up add-img" for="file"  > Add img
-                    <input id="file" type="file" name="image" hidden />
-                </label>
+                    <i class="fab fa-youtube" for="youtube"></i>
+                
+                    <i class="fas fa-list" for="list"></i>            
+                    <i class="fab fa-autoprefixer" for="palette"></i>
 
+                    <label class="far fa-image" for="file"  > 
+                            <input  id="file" type="file" name="image"  @change="onImgInput" hidden/>
+                        </label>
+                    
+                    <img v-if="newNote.info.url" src="newNote.info.url">
+            
             </div>
+
+        </div>
             <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote" @update="update"></note-list>
         </section>
     `,
@@ -65,6 +79,13 @@ export default {
         },
         selectNote(note) {
             this.selectedNote = note;
+        },
+        onImgInput(e) {
+            const file = e.target.files[0];
+            this.newNote.info.url = URL.createObjectURL(file);
+            // this.save(this.newNote)
+            console.log(this.newNote.info.url);
+            // noteService.save(this.newNote)
         },
         removeNote(id) {
             console.log(id);

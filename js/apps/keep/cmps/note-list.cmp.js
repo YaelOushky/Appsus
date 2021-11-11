@@ -15,9 +15,9 @@ export default {
     
         <ul class="note-list main-app">
             <li v-for="note in notes" :key="note.id" class="notes-preview-container">
-                <note-preview :note="note"  @remove="remove(note.id)" @openEdit ="openEdit" @save="changeColor"/>
+                <note-preview :note="note"  @remove="remove(note.id)" @openEdit ="openEdit" @save="save"/>
             </li>
-        </ul>
+        </ul>z
         <note-details class="note-details" v-if="currNote" :note="currNote"  @closeModal="closeEdit"></note-details>
     </section>
     `,
@@ -42,7 +42,8 @@ export default {
         closeEdit() {
             this.currNote = null
         },
-        changeColor(note) {
+        save(note) {
+            console.log(note);
             noteService.save(note)
                 .then(console.log(this.notes))
         },

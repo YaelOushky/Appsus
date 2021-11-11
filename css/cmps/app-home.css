@@ -1,40 +1,46 @@
 /* app-header */
 
 .app-header {
-  height: 8vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-
-  justify-content: space-between;
-  border-bottom: 1px solid gainsboro;
-  background-color: rgb(196, 9, 9);
+    height: 8vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gainsboro;
+    background-color: rgb(196, 9, 9);
 }
 
 .app-header input {
-  color: white;
-  font-size: 20px;
-  width: 500px;
-  padding: 10px;
-  /* border-radius: 10px; */
-  border: none;
-  background-color: rgba(247, 218, 218, 0);
+    color: white;
+    font-size: 20px;
+    width: 500px;
+    padding: 10px;
+    /* border-radius: 10px; */
+    border: none;
+    background-color: rgba(247, 218, 218, 0);
 }
+
 .search-container {
-  /* width: 500px; */
-  padding: 5px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(247, 218, 218, 0.479);
+    /* width: 500px; */
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(247, 218, 218, 0.479);
 }
+
+.search-container input:focus {
+    outline: none;
+}
+
+
 /* app-footer */
 
 .app-footer {
-  width: 100%;
-  height: 8vh;
-  display: flex;
-  position: fixed;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(196, 9, 9);
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(196, 9, 9);
 }

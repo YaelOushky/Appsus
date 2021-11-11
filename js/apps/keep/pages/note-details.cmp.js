@@ -18,10 +18,11 @@ export default {
     },
     template: `
         <section class='edit-note' :class="note.style.backgroundColor">
-            <component   
+                    <component   
                         :is="note.type" 
                         :info="note.info"                                                
                         :bcg="note.style"                                                
+                        :id="note.id"                                                
                         @update="update"
                         @removeTodo="removeTodo"
                         @closeModal="closeModal">

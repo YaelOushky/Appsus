@@ -1,40 +1,140 @@
 .note-preview {
-    height: 100px;
+    position: relative;
+    min-height: 100px;
+    max-height: 500px;
     width: 250px;
-    border: solid 1px black;
+    border: solid 0.5px rgba(128, 128, 128, 0.342);
     border-radius: 10px;
     text-align: center;
+    box-shadow: 1px 1px 1px #888888;
 }
 
 
-/* .note-preview select {
-    background-color: gray;
-} */
+/* note-preview-icons */
 
-
-/* img {
-    width: 50px;
-    height: 50px;
-} */
-
-
-/* note-details */
-
-.edit-note {
+.note-preview .note-preview-icons {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    /* text-align: center; */
-    border-radius: 2em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+}
+
+
+/* note-preview-container */
+
+.note-preview .note-preview-container img {
+    width: 248px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.note-preview .note-preview-container>* {
+    margin-top: 10px;
+}
+
+
+/* note-preview-edit */
+
+.note-preview .note-preview-edit {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(211, 211, 211, 0.746);
+    padding: 3px;
+    border-radius: 10px;
+}
+
+
+/* cmp-smart */
+
+.cmp-smart {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* box-shadow: 3px 3px 3px #888888; */
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-cmp-smart {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 11px;
+}
+
+.cmp-smart img {
+    width: 100%;
+}
+
+
+/* todos-cmp */
+
+.todos-cmp {
+    font-size: 1.2em;
+}
+
+.todos-cmp .add-note {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 0.5px solid rgba(128, 128, 128, 0.609);
+    border-radius: 10px;
+    margin-bottom: 6px;
+    width: 80%;
+}
+
+.todos-cmp-container input {
+    border-radius: 5px;
+    padding: 8px;
+    width: 85%;
+    border: none;
+    margin-block-end: 10px;
+    margin-top: 10px;
+}
+
+.todos-cmp-container input:focus {
+    outline: none;
+}
+
+
+/* txt-cmp */
+
+.txt-cmp input {
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    margin-block-end: 10px;
+}
+
+.txt-cmp-edit {
+    width: 93%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(211, 211, 211, 0.746);
+    padding: 15px;
+    border-radius: 10px;
 }
 
 
 /* note-list */
 
 .note-list {
-    display: grid;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
@@ -42,10 +142,16 @@
 
 .edit-note {
     width: 400px;
-    height: 300px;
+    min-height: 170px;
     background-color: #cbf0f8;
     border-color: #cbf0f8;
     border: 1px solid gray;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2em;
+    box-shadow: 3px 3px 3px #888888;
 }
 
 
@@ -103,4 +209,68 @@
 
 .done {
     text-decoration: line-through;
+}
+
+
+/* new-note-edit */
+
+.new-note-edit {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(211, 211, 211, 0.514);
+    width: 500px;
+    padding: 15px;
+    border-radius: 15px;
+    gap: 8px;
+    margin-block-start: 40px;
+    box-shadow: 3px 3px 3px #888888;
+}
+
+.new-note-edit input {
+    border-radius: 5px;
+    padding: 8px;
+    width: 350px;
+    border: none;
+}
+
+
+/* new-note-title */
+
+.new-note-title {
+    margin-inline-end: 19px;
+}
+
+
+/* icons-new-note */
+
+.icons-new-note {
+    display: flex;
+    margin-top: 8px;
+    gap: 42px;
+}
+
+.main-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s;
+}
+
+body.menu-open .main-screen {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+body.menu-open .main-nav {
+    transform: translateX(0);
+    box-shadow: -2px -2px 20px rgba(0, 0, 0, 0.25);
 }

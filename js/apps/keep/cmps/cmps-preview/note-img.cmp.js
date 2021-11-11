@@ -3,6 +3,7 @@ export default {
     template: `
         <div class="img-cmp cmp-smart">
         <a @click="closeModal" title="back" >X</a>
+        
             <label>
                 {{info.title}}
             </label>

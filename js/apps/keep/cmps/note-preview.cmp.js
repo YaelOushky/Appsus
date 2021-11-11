@@ -1,30 +1,48 @@
 export default {
     props: ['note'],
-    components: {},
     template: `
         <section class="note-preview" :class="bcg"  @mouseover="hover = true"
-    @mouseleave="hover = false">
-       
-            <a @click="remove" >X</a>
-            <div @click="openEdit(note.id)">
-                 <p> <strong v-show="note.info.title"> Title: </strong><span>{{note.info.title}}</span></p>
-                
-               <p><strong v-show="note.info.title">Subtitle:</strong><span> {{note.info.txt}}</span></p>
-                <!-- <img v-if="note.info.url" src="previewImage" > -->
+    @mouseleave="hover = false" @click="openEdit(note.id)">
+      
+            <div v-show="hover" class="note-preview-icons">
+                <i  class="fas fa-thumbtack" @click.stop></i>
+                <i class="fas fa-backspace" @click.stop="remove"></i>
             </div>
-            <select v-show="hover" v-model="note.style.backgroundColor" @change.stop="save(note)" :class=bcg>
-                <option>white</option>
-                <option>coral</option>
-                <option>pink</option>
-                <option>blue</option>
-                <option>green</option>
-                <option>yellow</option>
-            </select>
+            
+            <div class="note-preview-container" >
+                <img v-if="note.info.url" :src=note.info.url  :id=note.id>
+                 <strong v-show="note.info.title">{{note.info.title}}</strong>
+                
+               <p v-show="note.info.subtitle"> {{note.info.subtitle}}</p>
+              
+               <ul v-show="note.info.todos">    
+                    <li  v-for="(todo,idx) in note.info.todos" :key="idx">
+                        <span :class={done:todo.doneAt} >{{todo.txt}}</span>
+                        <i class="fas fa-times"></i>
+                    </li>
+                </ul>
+            </div>  
+            <div v-show="hover" class="note-preview-edit" @click.stop>
+               
+            <i class="fab fa-youtube" for="youtube" ></i>
+               <i class="fas fa-list" for="list"></i>            
+               <i class="fab fa-autoprefixer" for="palette"></i>
 
-            <!-- <label  v-show="hover" class="img-up add-img" for="file"  > Add img -->
-                    <input @change="onImgInput" id="file" type="file" name="image"  />
-                <!-- </label> -->
-                <img v-if="note.info.url" :src=note.info.url  height="200" id="myimage">
+                    <select  class="fas fa-palette" v-model="note.style.backgroundColor"  @change.stop="save(note)" :class=bcg>
+                        <option>white</option>
+                        <option>coral</option>
+                        <option>pink</option>
+                        <option>blue</option>
+                        <option>green</option>
+                        <option>yellow</option>
+                    </select>
+
+                    <label class="far fa-image" :for="note.id" > 
+                    <input  :id="note.id" type="file" :name=note.id  @change="onImgInput" hidden/>
+                </label>
+                
+            </div>
+               
         </section>
         `,
     // note.style Add color
@@ -36,9 +54,12 @@ export default {
             color: 'white',
             previewImage: null,
             hover: false,
-            img: null,
 
         };
+    },
+    created() {
+        this.currNote = this.note
+        console.log(this.currNote);
     },
     methods: {
         onImgInput(e) {
@@ -60,8 +81,6 @@ export default {
         openEdit(noteId) {
             this.$emit('openEdit', noteId)
         },
-
-
     },
     computed: {
         bcg() {
@@ -75,21 +94,5 @@ export default {
                 yellow: currColor === 'yellow',
             }
         },
-        loadImageFromInput(event, onImageReady) {
-            element /*choose DOM element*/ .innerHTML = ''
-            var reader = new FileReader()
-
-            console.log(reader);
-            return reader.onload = function(event) {
-                var img = new Image()
-                img.onload = onImageReady.bind(null, img)
-                img.src = event.target.result
-                return img
-            }
-            reader.readAsDataURL(event.target.files[0])
-        },
-        img1() {
-            return this.img
-        }
     },
 }

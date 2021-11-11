@@ -46,8 +46,8 @@ function getEmptyNote() {
     return {
         type: 'noteTxt',
         info: {
-            txt: '',
             url: '',
+            subtitle: '',
             title: '',
             todos: [],
         },
@@ -79,7 +79,7 @@ function _createNotes() {
                 isPinned: true,
                 info: {
                     url: '',
-                    txt: "Fullstack Me Baby!"
+                    subtitle: "Fullstack Me Baby!"
                 },
                 style: {
                     backgroundColor: 'white'
@@ -87,9 +87,10 @@ function _createNotes() {
             },
             {
                 id: "n102",
-                type: "note-img",
+                type: "noteTxt",
                 info: {
                     url: '',
+                    subtitle: '',
                     title: "Bobi and Me"
                 },
                 style: {
@@ -101,6 +102,7 @@ function _createNotes() {
                 type: "note-todos",
                 info: {
                     url: '',
+                    subtitle: '',
                     label: "Get my stuff together",
                     title: "Bobi and Me",
                     todos: [{
