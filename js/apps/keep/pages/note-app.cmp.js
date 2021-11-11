@@ -17,7 +17,7 @@ export default {
         <input class="new-note-title" v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >    
 
                 <div class="start-show">
-                    <input v-model="newNote.info.txt" type="text" placeholder="write a note" @click="longNote">
+                    <input v-model="newNote.info.subtitle" type="text" placeholder="write a note" @click="longNote">
                     <i class="fas fa-plus" @click="add"></i>
 
                 </div>

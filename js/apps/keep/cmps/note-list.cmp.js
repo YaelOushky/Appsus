@@ -17,7 +17,7 @@ export default {
             <li v-for="note in notes" :key="note.id" class="notes-preview-container">
                 <note-preview :note="note"  @remove="remove(note.id)" @openEdit ="openEdit" @save="save"/>
             </li>
-        </ul>z
+        </ul>
         <note-details class="note-details" v-if="currNote" :note="currNote"  @closeModal="closeEdit"></note-details>
     </section>
     `,

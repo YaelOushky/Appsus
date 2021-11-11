@@ -1,27 +1,30 @@
+import { noteService } from "../../pages/service/keep-service.js"
+
 export default {
     props: ['info', 'bcg', 'id'],
     template: `
-        <div class="txt-cmp cmp-smart">
+        <div class="tube-cmp cmp-smart">
 
-        <div class="note-cmp-smart">
+        <div class="tube-cmp-smart">
                 <i  class="fas fa-thumbtack"></i>
                 <i class="fas fa-backspace" @click="closeModal" title="back"></i>
             </div>
-        
-        {{info.url}}
-        <div class="txt-cmp-container">
-                <img v-if="info.url" :src=info.url  :id=id >
-                
+
+        <div class="tube-cmp-container">
+                    
+                <div class="tube">
+                    <iframe v-if="src" :src=src > </iframe>
+                </div>
                 <input :class=color type="text" v-model="info.title" @input="update"  placeholder="title"/>
                 
                 <input :class=color type="text" v-model="info.subtitle" @input="update"  placeholder="Note txt"/>
         </div>
 
   
-            <div class="txt-cmp-edit">
+            <div class="tube-cmp-edit">
                
-                    <i class="fab fa-youtube" for="youtube"></i>
-                    <i class="fas fa-list" for="list" @click=addList></i>            
+                    <i class="fab fa-youtube" for="youtube" @click=search(beatles)></i>
+                    <i class="fas fa-list" for="list"></i>            
                     <i class="fab fa-autoprefixer" for="palette"></i>
 
                     <select class="fas fa-palette" :class=color v-model="bcg.backgroundColor" @change="update">
@@ -31,18 +34,14 @@ export default {
                         <option>blue</option>
                         <option>green</option>
                         <option>yellow</option>
-                    </select>
-
-                    <label class="far fa-image" for="id"  > 
-                    <input  id="id" type="file" :name=id  @change="onImgInput" hidden/>
-                </label>
-               
+                    </select>           
             </div>
         </div>
     `,
     data() {
         return {
-            txt: '',
+            src: '',
+            beatles: 'beatles'
         };
     },
     created() {
@@ -50,19 +49,25 @@ export default {
     },
     methods: {
         update() {
-            console.log(this.bcg.backgroundColor);
             this.$emit('update', this.info, this.bcg);
         },
         closeModal() {
             this.$emit('closeModal');
         },
-        onImgInput(e) {
-            const file = e.target.files[0];
-            this.info.url = URL.createObjectURL(file);
-            this.update
+
+        search(val) {
+            console.log(val);
+            noteService.getYoutubeVid(val)
+                .then(this.renderVideos)
         },
-        addList() {
-            this.$emit('addList');
+        renderVideos(videos) {
+            console.log('videos', videos);
+            var firstVid = videos[0].id.videoId;
+            this.onSelectedVid(firstVid);
+        },
+        onSelectedVid(id) {
+            console.log(id);
+            this.src = `https://www.youtube.com/embed/${id}`;
         }
     },
     computed: {

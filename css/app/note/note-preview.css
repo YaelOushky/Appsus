@@ -185,6 +185,14 @@
     background-color: white;
 }
 
+.fa-palette {
+    background-color: #d3d3d3be;
+}
+
+.fa-palette:focus {
+    outline: none;
+}
+
 
 /* todos */
 

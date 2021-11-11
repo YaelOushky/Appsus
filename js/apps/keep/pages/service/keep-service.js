@@ -3,8 +3,8 @@ import { storageService } from '../../../../../services/async-storage-service.js
 
 
 const NOTE_KEY = 'note';
+const Tube_KEY = 'AIzaSyDFP3SASYNHeIccEYCJT943kU9tP_7OM9I'
 var gNote = _createNotes()
-
 
 export const noteService = {
     query,
@@ -14,6 +14,7 @@ export const noteService = {
     getEmptyNote,
     save,
     getEmptyTodo,
+    getYoutubeVid,
 };
 
 
@@ -27,9 +28,6 @@ function remove(noteId) {
 }
 
 function updateNote(note) {
-    console.log(note);
-    // if (book.reviews) return storageService.put(BOOKS_KEY, book);
-    // else
     return storageService.put(NOTE_KEY, note);
 }
 
@@ -46,6 +44,7 @@ function getEmptyNote() {
     return {
         type: 'noteTxt',
         info: {
+            tube: '',
             url: '',
             subtitle: '',
             title: '',
@@ -68,7 +67,26 @@ function getEmptyTodo() {
     }
 }
 
-// _createNotes()
+const TUBE_KEY = 'vidsDB'
+
+function getYoutubeVid(val) {
+    console.log(val);
+    var vids = utilService.loadFromStorage(TUBE_KEY) || {}
+    if (vids && vids[val]) return Promise.resolve(vids[val])
+    return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${Tube_KEY}&q=${val}`)
+        .then(res => {
+            console.log('getting data from server');
+            vids[val] = res.data.items
+            utilService.saveToStorage(TUBE_KEY)
+            return res.data.items;
+        })
+}
+
+
+
+
+
+
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
@@ -78,8 +96,10 @@ function _createNotes() {
                 type: "noteTxt",
                 isPinned: true,
                 info: {
+                    tube: '',
                     url: '',
-                    subtitle: "Fullstack Me Baby!"
+                    subtitle: "Fullstack Me Baby!",
+                    todos: [],
                 },
                 style: {
                     backgroundColor: 'white'
@@ -89,9 +109,11 @@ function _createNotes() {
                 id: "n102",
                 type: "noteTxt",
                 info: {
+                    tube: '',
                     url: '',
                     subtitle: '',
-                    title: "Bobi and Me"
+                    title: "Bobi and Me",
+                    todos: [],
                 },
                 style: {
                     backgroundColor: 'white'
@@ -99,8 +121,23 @@ function _createNotes() {
             },
             {
                 id: "n103",
-                type: "note-todos",
+                type: "noteTube",
                 info: {
+                    tube: '',
+                    url: '',
+                    subtitle: '',
+                    title: 'bla',
+                    todos: [],
+                },
+                style: {
+                    backgroundColor: 'white'
+                }
+            },
+            {
+                id: "n104",
+                type: "noteTodos",
+                info: {
+                    tube: '',
                     url: '',
                     subtitle: '',
                     label: "Get my stuff together",

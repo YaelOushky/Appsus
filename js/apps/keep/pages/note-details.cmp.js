@@ -2,6 +2,7 @@ import noteTxt from '../cmps/cmps-preview/note-txt.cmp.js'
 import noteImg from '../cmps/cmps-preview/note-img.cmp.js'
 import slectBox from '../cmps/cmps-preview/select-box.cmp.js'
 import noteTodos from '../cmps/cmps-preview/note-todos.cmp.js'
+import noteTube from '../cmps/cmps-preview/note-tube.cmp.js'
 import { noteService } from '../pages/service/keep-service.js';
 import { eventBus } from '../../../../services/event-bus-service.js';
 
@@ -15,6 +16,7 @@ export default {
         noteImg,
         noteTodos,
         slectBox,
+        noteTube
     },
     template: `
         <section class='edit-note' :class="note.style.backgroundColor">
@@ -24,6 +26,7 @@ export default {
                         :bcg="note.style"                                                
                         :id="note.id"                                                
                         @update="update"
+                        @addList="addList"
                         @removeTodo="removeTodo"
                         @closeModal="closeModal">
                     </component>
@@ -41,7 +44,6 @@ export default {
         update() {
             noteService.updateNote(this.note)
                 .then(() => eventBus.$emit('updating'))
-
         },
         save() {
             console.log('Survey Answers', this.answers);
@@ -50,9 +52,12 @@ export default {
             this.$emit('closeModal');
         },
         removeTodo(idx) {
-            console.log(idx);
             this.note.info.todos.splice(idx, 1)
             this.update()
+        },
+        addList() {
+            this.note.type = 'noteTodos'
+            this.update(this.note)
         }
     },
     computed: {},

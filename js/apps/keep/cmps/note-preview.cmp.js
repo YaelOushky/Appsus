@@ -25,10 +25,11 @@ export default {
             <div v-show="hover" class="note-preview-edit" @click.stop>
                
             <i class="fab fa-youtube" for="youtube" ></i>
-               <i class="fas fa-list" for="list"></i>            
+               <i class="fas fa-list" for="list" @click=addList></i>            
                <i class="fab fa-autoprefixer" for="palette"></i>
-
-                    <select  class="fas fa-palette" v-model="note.style.backgroundColor"  @change.stop="save(note)" :class=bcg>
+              
+               <label class="fas fa-palette" :for="note.id"></label>
+                    <select  :id="note.id" v-model="note.style.backgroundColor"  @change.stop="save(note)" >
                         <option>white</option>
                         <option>coral</option>
                         <option>pink</option>
@@ -52,14 +53,12 @@ export default {
             answers: [],
             currNote: null,
             color: 'white',
-            previewImage: null,
             hover: false,
 
         };
     },
     created() {
         this.currNote = this.note
-        console.log(this.currNote);
     },
     methods: {
         onImgInput(e) {
@@ -81,6 +80,11 @@ export default {
         openEdit(noteId) {
             this.$emit('openEdit', noteId)
         },
+        addList() {
+            console.log(this.note);
+            this.note.type = 'noteTodos'
+            this.save(this.note)
+        }
     },
     computed: {
         bcg() {

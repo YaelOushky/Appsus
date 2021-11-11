@@ -51,7 +51,7 @@ export default {
             <div class=add-note>
                 <input :class=color type="text" v-model="currTxt.txt" @change="addTodo" />
                 
-                <i class="fas fa-plus" @click="addTodo" title="Add"></i>
+                <i class="fas fa-plus" @click.stop="addTodo" title="Add"></i>
             </div>
 
             </div>          
@@ -108,9 +108,6 @@ export default {
             this.$emit('removeTodo', idx);
 
         },
-        editTodo(idx) {
-
-        },
         onToggleTodo(todoId) {
             this.info.todos.forEach(todo => {
                 if (todo.id === todoId) {
@@ -122,6 +119,7 @@ export default {
             this.update()
         },
         addTodo() {
+            if (!this.currTxt.txt) return
             this.info.todos.push(this.currTxt)
             this.update()
             this.currTxt = noteService.getEmptyTodo()
