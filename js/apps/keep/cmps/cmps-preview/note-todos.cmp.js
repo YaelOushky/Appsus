@@ -6,7 +6,7 @@ export default {
     props: ['info', 'bcg'],
     template: `
         <div class="todos-cmp cmp-smart" >
-        <a @click="closeModal" title="back" >X</a>
+        <a class="back" @click="closeModal" title="back" >X</a>
             <!-- <label>
                 <template v-for="(todo,idx) in info.todos">                                      
                                                
@@ -32,24 +32,25 @@ export default {
             <option>importance</option>
             <option>created</option>
         </select> -->
+    <div class="todos-cmp-container">
+                <ul>    
+                    <li  v-for="(todo,idx) in info.todos" :ket="idx">
+                        <span :class={done:todo.doneAt} @click="onToggleTodo(todo.id)">{{todo.txt}}</span>
+                    </li>
+                </ul>
 
-        <ul>    
-            <li  v-for="(todo,idx) in info.todos" :ket="idx">
-                <span :class={done:todo.doneAt} @click="onToggleTodo(todo.id)">{{todo.txt}}</span>
-             </li>
-        </ul>
-
-        <input :class=color type="text" v-model="txt"  />
-        <a @click="addTodo" title="Add" >+</a>
-
-            <select :class=color v-model="bcg.backgroundColor" @change="update">
-                <option>white</option>
-                <option>coral</option>
-                <option>pink</option>
-                <option>blue</option>
-                <option>green</option>
-                <option>yellow</option>
-            </select>
+                <a @click="addTodo" title="Add">
+                    <input :class=color type="text" v-model="currTxt.txt"  />
+                +</a>
+                    <select :class=color v-model="bcg.backgroundColor" @change="update">
+                        <option>white</option>
+                        <option>coral</option>
+                        <option>pink</option>
+                        <option>blue</option>
+                        <option>green</option>
+                        <option>yellow</option>
+                    </select>
+            </div>
         </div>
     `,
     // @input="update"
@@ -59,14 +60,17 @@ export default {
                 category: 'IMPORTANCE',
                 active: 'ALL'
             },
-            txt: ''
+            currTxt: null,
         };
+    },
+    created() {
+        this.currTxt = noteService.getEmptyTodo()
     },
 
     methods: {
         update() {
             console.log(this.bcg.backgroundColor);
-            this.$emit('update', this.info, this.bcg);
+            this.$emit('update');
         },
         closeModal() {
             this.$emit('closeModal');
@@ -89,7 +93,9 @@ export default {
             this.update()
         },
         addTodo() {
-
+            this.info.todos.push(this.currTxt)
+            this.update()
+            this.currTxt = noteService.getEmptyTodo()
         },
         // getTodosForDisplaySort() {
         //     if (this.sortBy.category === 'IMPORTANCE') this.info.todos.sort((a, b) => a.importance - b.importance)
