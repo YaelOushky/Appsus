@@ -1,6 +1,13 @@
+import emailCompose from '../cmps/email-compose.cmp.js';
+
+
 export default {
+    components: {
+        emailCompose,
+    },
     template: `
         <div class="gmail-filter">
+            <email-compose />
             <div class="filter" @click="filter('inbox') " :class={select:selects.inbox}>
                 <i class="fas fa-inbox"></i>
                 <p>Inbox</p>

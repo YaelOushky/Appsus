@@ -12,7 +12,17 @@ const gMails = [
         Here's a special surprise from TML by Tomorrowland to celebrate your birthday and to cherish unforgettable memories.
         
          `, `* This -20% voucher is valid with no minimum purchase order amount and is exclusively for you.
-         Offer valid within 48 hours after the receiving date of this email`],
+         Offer valid within 48 hours after the receiving date of this email`,`ntegration is acceleration—and in Adobe XD, you have dozens of plugins at your fingertips. Share designs instantly, update copy more easily, test your concepts, and more.	 
+ 	
+         `,`Adobe, the Adobe logo, and the Adobe XD logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. All other trademarks are the property of their respective owners.
+
+         This is a marketing email from Adobe Systems Software Ireland Limited, 4‑6 Riverwalk, Citywest Business Park, Dublin 24, Ireland.
+         
+         Click here to unsubscribe or send an unsubscribe request to the postal address above. Please review the Adobe Privacy Policy.
+         
+         To ensure future delivery of email, add mail@email.adobe.com to your address book, contacts, or safe senders list.
+         
+         Registered office: Adobe Systems Software Ireland Limited, 4‑6 Riverwalk, Citywest Business Park, Dublin 24, Ireland. Registered number: 344992`],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -20,6 +30,7 @@ const gMails = [
         isStar: true,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
     {
         id: 'e102',
@@ -33,6 +44,7 @@ const gMails = [
         isStar: false,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
     {
         id: 'e103',
@@ -46,6 +58,7 @@ const gMails = [
         isStar: false,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
     {
         id: 'e104',
@@ -59,6 +72,7 @@ const gMails = [
         isStar: false,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
     {
         id: 'e105',
@@ -72,6 +86,7 @@ const gMails = [
         isStar: false,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
     {
         id: 'e106',
@@ -85,6 +100,7 @@ const gMails = [
         isStar: false,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
     {
         id: 'e107',
@@ -98,6 +114,7 @@ const gMails = [
         isStar: false,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
     {
         id: 'e108',
@@ -111,6 +128,7 @@ const gMails = [
         isStar: false,
         isTrash: false,
         isDrafts: false,
+        isSent: false
     },
 ]
 
@@ -121,11 +139,16 @@ export const emailService = {
     remove,
     save,
     getById,
+    convertTimestamp,
     // addReview,
     // searchBooks,
     // getNextBookId,
     // getPreviousBookId
 };
+
+
+
+
 
 function save(mail) {
     if (mail.id) return storageService.put(EMAILS_KEY, mail);

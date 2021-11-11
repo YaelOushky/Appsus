@@ -1,12 +1,14 @@
 import emailList from '../cmps/email-list.cmp.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
 import { emailService } from '../services/email.service.js';
+import { eventBus } from '../../../../services/event-bus-service.js';
 
 export default {
     components: {
         emailList,
         emailService,
-        emailFilter
+        emailFilter,
+        eventBus
     },
     template: `
         <section class="email-app app-main">
@@ -23,6 +25,9 @@ export default {
     },
     created() {
         this.loadMails();
+        eventBus.$on('refresh', () => {
+            this.loadMails() 
+        })
     },
     methods: {
         loadMails() {
@@ -58,7 +63,6 @@ export default {
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
-
         }
 
     },
@@ -72,13 +76,13 @@ export default {
                 return this.emails.filter(email => email.isStar)
             }
             if (this.filterBy === 'drafts') {
-               return this.emails.filter(email => email.isDrafts)
+                return this.emails.filter(email => email.isDrafts)
             }
             if (this.filterBy === 'trash') {
-               return this.emails.filter(email => email.isTrash)
+                return this.emails.filter(email => email.isTrash)
             }
             if (this.filterBy === 'sent') {
-                // return console.log(sent);
+                return this.emails.filter(email => email.isSent)
             }
         },
     },
