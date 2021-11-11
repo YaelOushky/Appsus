@@ -26,6 +26,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    border-radius: 2em;
 }
 
 
@@ -79,4 +80,8 @@
 }
 
 
-/* cmp */
+/* todos */
+
+.done {
+    text-decoration: line-through;
+}

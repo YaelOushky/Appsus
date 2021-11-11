@@ -1,7 +1,7 @@
 export default {
     props: ['info', 'bcg'],
     template: `
-        <div class="img-cmp cmp">
+        <div class="img-cmp cmp-smart">
         <a @click="closeModal" title="back" >X</a>
             <label>
                 {{info.title}}

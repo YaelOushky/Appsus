@@ -12,7 +12,7 @@ export default {
                <p><strong v-show="note.info.title">Subtitle:</strong><span> {{note.info.txt}}</span></p>
                 <!-- <img v-if="note.info.url" src="previewImage" > -->
             </div>
-            <select v-show="hover" v-model="note.style.backgroundColor" @change.stop="save(note)" >
+            <select v-show="hover" v-model="note.style.backgroundColor" @change.stop="save(note)" :class=bcg>
                 <option>white</option>
                 <option>coral</option>
                 <option>pink</option>
@@ -24,14 +24,6 @@ export default {
             <label v-show="hover" class="img-up add-img" for="file"  > Add img
                     <input id="file" type="file" name="image" hidden />
                 </label>
-            <!-- <div role="button">
-                <div role="button">white</div>
-                <div role="button">coral</div>
-                <div role="button">pink</div>
-                <div role="button">blue</div>
-                <div role="button">green</div>
-                <div role="button">yellow</div>
-            </div>  -->
         </section>
         `,
     // note.style Add color

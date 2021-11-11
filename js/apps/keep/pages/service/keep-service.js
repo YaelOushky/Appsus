@@ -13,6 +13,7 @@ export const noteService = {
     remove,
     getEmptyNote,
     save,
+    getEmptyTodo,
 };
 
 
@@ -57,6 +58,16 @@ function getEmptyNote() {
 }
 
 
+function getEmptyTodo() {
+    return {
+        id: utilService.makeId(),
+        txt: '',
+        doneAt: null,
+        createdAt: Date.now(),
+        importance: false,
+    }
+}
+
 // _createNotes()
 
 function _createNotes() {
@@ -91,9 +102,21 @@ function _createNotes() {
                 info: {
                     url: '',
                     label: "Get my stuff together",
-                    todos: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
+                    title: "Bobi and Me",
+                    todos: [{
+                            id: utilService.makeId(),
+                            txt: "Driving liscence",
+                            doneAt: null,
+                            createdAt: Date.now() + 50,
+                            importance: false,
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "Coding power",
+                            doneAt: 187111111,
+                            createdAt: Date.now(),
+                            importance: true,
+                        }
                     ]
                 },
                 style: {

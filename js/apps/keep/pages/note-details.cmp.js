@@ -23,6 +23,7 @@ export default {
                         :info="note.info"                                                
                         :bcg="note.style"                                                
                         @update="update"
+                        @removeTodo="removeTodo"
                         @closeModal="closeModal">
                     </component>
                 </section>
@@ -47,6 +48,11 @@ export default {
         closeModal() {
             this.$emit('closeModal');
         },
+        removeTodo(idx) {
+            console.log(idx);
+            this.note.info.todos.splice(idx, 1)
+            this.update()
+        }
     },
     computed: {},
 }

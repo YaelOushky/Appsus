@@ -1,10 +1,11 @@
 export default {
     props: ['info', 'bcg'],
     template: `
-        <div class="txt-cmp cmp">
+        <div class="txt-cmp cmp-smart">
         <a @click="closeModal" title="back" >X</a>
             <label>
-                <input :class=color type="text" v-model="info.txt" @input="update" />
+                <input :class=color type="text" v-model="info.title" @input="update"  placeholder="title"/>
+                <input :class=color type="text" v-model="info.txt" @input="update"  placeholder="Note txt"/>
             </label>
             <select :class=color v-model="bcg.backgroundColor" @change="update">
                 <option>white</option>
