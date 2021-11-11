@@ -1,26 +1,30 @@
 export default {
     template: `
         <header class="app-header">
-            <div >
-                <p class="fas fa-grip-lines icon"></p>
-                <img src="img/logo.png">
-                <!-- <p >
-                    <span>Keep</span> <img src="img/logo-keep.png" >
-                </p> -->
+            <div class="logo-container-img">
+                <img src="img/logo.png" v-if="isGmail">
+                <div v-if="isKeep" class="logo-container">
+                  <p> Keep</p>
+                    <img src="img/logo-keep.png" v-if="isKeep">
+                </div>
+                <div class="logo-container" v-if="isHome">
+                <p> Home</p>
+                    <img class="logo" src="img/home.png" v-if="isHome">
+                </div>
             </div>
                 <div class="search-container">
                     <input class="search" aria-label="חיפוש" autocomplete="off" placeholder="Search" role="combobox" value="" name="q" type="text">
-                    <i class="fas fa-search icon"></i>
+                    <i class="fas fa-search icon" ></i>
                 </div>
-            <nav>
-            <i class="far fa-question-circle icon"></i>
-            <i class="fas fa-cog icon"></i>
-            <i class="fas fa-th icon"></i>
-            <!-- <i class="far fa-list"></i> -->
-                <router-link to="/" active-class="active-link" exact>Home</router-link> 
-                <router-link to="/mail" on>Gmail</router-link> 
-                <router-link to="/keep" @click="isKeep">Keep</router-link>
-                <i class="far fa-user icon"></i>
+            <nav   >
+        <img class="grid" src="img/grid.png" @click="closeModal" >
+        <transition name="slide-fade">
+        <div class="grid-modal"  v-if="show">
+            <router-link to="/" active-class="active-link" exact><img  @click="closeModal('isHome')" class="logo" src="img/home.png"/></router-link> 
+            <router-link  to="/mail" on><img @click="closeModal('isGmail')" class="logo" src="img/gmail.png"/></router-link> 
+            <router-link  to="/keep" @click="isKeep"><img @click="closeModal('isKeep')" class="logo" src="img/logo-keep.png"/></router-link>
+        </div>
+        </transition>
             </nav>
         </header>
     `,
@@ -28,12 +32,41 @@ export default {
         return {
             isMailc: false,
             isKeep: false,
-
+            show: false,
+            isGmail: false,
+            isKeep: false,
+            isHome: true
         }
     },
+    destroyed() {
+        this.hover = false
+    },
     methods: {
-         img(){
-             this.$router.push('/book')
-         }
+        img() {
+            this.$router.push('/book')
+        },
+        closeModal(is) {
+            this.show = !this.show
+            this.changeLogo(is)
+        },
+        changeLogo(is) {
+            if (is === 'isGmail') {
+                
+                this.isGmail = true
+                this.isKeep = false,
+                this.isHome = false
+            }
+            if (is === 'isKeep') {
+                this.isGmail = false
+                this.isKeep = true,
+                this.isHome = false
+            }
+            if (is === 'isHome') {
+                this.isGmail = false
+                this.isKeep = false,
+                this.isHome = true
+            }
+
+        }
     },
 }

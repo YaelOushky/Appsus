@@ -1,46 +1,103 @@
 /* app-header */
 
 .app-header {
-    height: 8vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid gainsboro;
-    background-color: rgb(196, 9, 9);
+  height: 8vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid gainsboro;
+  background-color: rgb(196, 9, 9);
 }
 
 .app-header input {
-    color: white;
-    font-size: 20px;
-    width: 500px;
-    padding: 10px;
-    /* border-radius: 10px; */
-    border: none;
-    background-color: rgba(247, 218, 218, 0);
+  color: white;
+  font-size: 20px;
+  width: 500px;
+  padding: 10px;
+  /* border-radius: 10px; */
+  border: none;
+  background-color: rgba(247, 218, 218, 0);
 }
 
 .search-container {
-    /* width: 500px; */
-    padding: 5px;
-    border-radius: 10px;
-    border: none;
-    background-color: rgba(247, 218, 218, 0.479);
+  /* width: 500px; */
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(247, 218, 218, 0.479);
+}
+.logo {
+  width: 30px;
+}
+.grid {
+    margin-inline-end: 20px;
+  width: 50px;
+  transition: width 2s, height 2s, transform 2s;
+}
+
+.logo-container-img{
+margin-inline-start: 20px;
+}
+
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container p {
+  margin-inline-end: 10px;
+  color: white;
+  font-size: 26px;
+}
+
+/* .grid:hover {
+  width: 60px;
+  transform: rotate(180deg);
+} */
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.grid-modal {
+  position: absolute;
+  background-color: rgba(252, 192, 192, 0.61);
+  padding: 20px;
+  left: 96%;
+  top: 8%;
+  gap: 10px;
+  border-radius: 0px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 3px 3px #888888;
+}
+
+.grid-modal .logo:hover {
 }
 
 .search-container input:focus {
-    outline: none;
+  outline: none;
 }
-
 
 /* app-footer */
 
 .app-footer {
-    width: 100%;
-    height: 8vh;
-    display: flex;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(196, 9, 9);
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(196, 9, 9);
 }
