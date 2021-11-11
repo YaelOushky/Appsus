@@ -4,7 +4,6 @@ export default {
         <div class="txt-cmp cmp">
         <a @click="closeModal" title="back" >X</a>
             <label>
-                {{bcg.backgroundColor}}
                 <input :class=color type="text" v-model="info.txt" @input="update" />
             </label>
             <select :class=color v-model="bcg.backgroundColor" @change="update">

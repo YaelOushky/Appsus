@@ -7,9 +7,9 @@ export default {
        
             <a @click="remove" >X</a>
             <div @click="openEdit(note.id)">
-
-                <h3 v-show="note.title"> Title: <span>{{note.title}}</span></h3>
-                <p>Subtitle: {{note.info.txt}}</p>
+                 <p> <strong v-show="note.info.title"> Title: </strong><span>{{note.info.title}}</span></p>
+                
+               <p><strong v-show="note.info.title">Subtitle:</strong><span> {{note.info.txt}}</span></p>
                 <!-- <img v-if="note.info.url" src="previewImage" > -->
             </div>
             <select v-show="hover" v-model="note.style.backgroundColor" @change.stop="save(note)" >

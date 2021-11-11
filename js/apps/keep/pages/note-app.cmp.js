@@ -13,9 +13,28 @@ export default {
     template: `
         <section class="home-page app-main" v-if="notes">
             <h1>Note app</h1>
-            <div class='new-note' @click="longNote">
-                <input v-model="newNote.info.txt" type="text" placeholder="write a note" >
-                <a @click="add">+</a>
+            
+            
+            <input v-model="newNote.info.txt" type="text" placeholder="write a note" @click="longNote">
+            <a @click="add">+</a>
+            
+            <div class='new-note'  v-show="editNewNote">
+                
+                <input v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >
+
+                <select v-model="newNote.style.backgroundColor" @change.stop="add" >
+                <option>white</option>
+                <option>coral</option>
+                <option>pink</option>
+                <option>blue</option>
+                <option>green</option>
+                <option>yellow</option>
+            </select>
+
+            <label class="img-up add-img" for="file"  > Add img
+                    <input id="file" type="file" name="image" hidden />
+                </label>
+
             </div>
             <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote" @update="update"></note-list>
         </section>
@@ -25,6 +44,7 @@ export default {
             notes: null,
             filterBy: null,
             newNote: null,
+            editNewNote: false,
         };
     },
     created() {
@@ -82,7 +102,7 @@ export default {
                 .then(console.log(this.notes))
         },
         longNote() {
-            console.log('aa');
+            this.editNewNote = true
         }
     },
     computed: {
