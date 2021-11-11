@@ -69,7 +69,7 @@ export default {
         MailToShow() {
             if (!this.filterBy) return this.emails;
             if (this.filterBy === 'inbox') {
-                return this.emails.filter(email => !email.isTrash)
+                return this.emails.filter(email => !email.isTrash && !email.isDrafts )
             }
             if (this.filterBy === 'starred') {
                 return this.emails.filter(email => email.isStar)

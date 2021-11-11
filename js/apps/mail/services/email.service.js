@@ -8,13 +8,13 @@ const gMails = [
         id: 'e101',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ `This is your day yaeli, make it legendary. 
+        title: [`This is your day yaeli, make it legendary. 
         Here's a special surprise from TML by Tomorrowland to celebrate your birthday and to cherish unforgettable memories.
         
          `, `* This -20% voucher is valid with no minimum purchase order amount and is exclusively for you.
-         Offer valid within 48 hours after the receiving date of this email`,`ntegration is acceleration—and in Adobe XD, you have dozens of plugins at your fingertips. Share designs instantly, update copy more easily, test your concepts, and more.	 
+         Offer valid within 48 hours after the receiving date of this email`, `ntegration is acceleration—and in Adobe XD, you have dozens of plugins at your fingertips. Share designs instantly, update copy more easily, test your concepts, and more.	 
  	
-         `,`Adobe, the Adobe logo, and the Adobe XD logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. All other trademarks are the property of their respective owners.
+         `, `Adobe, the Adobe logo, and the Adobe XD logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. All other trademarks are the property of their respective owners.
 
          This is a marketing email from Adobe Systems Software Ireland Limited, 4‑6 Riverwalk, Citywest Business Park, Dublin 24, Ireland.
          
@@ -36,7 +36,7 @@ const gMails = [
         id: 'e102',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ 'Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
+        title: ['Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -50,7 +50,7 @@ const gMails = [
         id: 'e103',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ 'Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
+        title: ['Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -64,7 +64,7 @@ const gMails = [
         id: 'e104',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ 'Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
+        title: ['Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -78,7 +78,7 @@ const gMails = [
         id: 'e105',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ 'Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
+        title: ['Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -92,7 +92,7 @@ const gMails = [
         id: 'e106',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ 'Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
+        title: ['Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -106,7 +106,7 @@ const gMails = [
         id: 'e107',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ 'Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
+        title: ['Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -120,7 +120,7 @@ const gMails = [
         id: 'e108',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
-        title:[ 'Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
+        title: ['Would love to catch up sometimes Would love to catch up sometimes ', 'Would love to catch up sometimes Would love to catch up sometimes '],
         isRead: false,
         sentAt: convertTimestamp(),
         to: 'momo@momo.com',
@@ -140,14 +140,26 @@ export const emailService = {
     save,
     getById,
     convertTimestamp,
-    // addReview,
-    // searchBooks,
-    // getNextBookId,
-    // getPreviousBookId
+    getEmptyMail
 };
 
 
-
+function getEmptyMail() {
+    return {
+        subject: '',
+        body: '',
+        title: [''],
+        isRead: false,
+        sentAt: convertTimestamp(),
+        to: '',
+        sendBy: '',
+        isStar: false,
+        isTrash: false,
+        isDrafts: false,
+        isSent: false,
+        isDrafts: true
+    }
+}
 
 
 function save(mail) {
@@ -158,14 +170,14 @@ function save(mail) {
 function convertTimestamp(timestamp = Date.now()) {
     var date = new Date(timestamp);
     return (
-        getMonth()+ ' '+
-        date.getDate() 
-       
+        getMonth() + ' ' +
+        date.getDate()
+
     );
 }
 
-function getMonth(){
-    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function getMonth() {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const d = new Date();
     let month = months[d.getMonth()];
     return month

@@ -30,6 +30,7 @@ export default {
     },
     computed: {
         emailDescription() {
+            console.log(this.email.body);
             var cut = this.email.body.substring(0, 60)
             return cut
         },
