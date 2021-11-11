@@ -41,7 +41,6 @@ export default {
             this.selectedMail = mail;
         },
         deleteEmail(emailId) {
-            console.log(emailId);
             emailService.remove(emailId)
                 .then(() => {
                     // const msg = {

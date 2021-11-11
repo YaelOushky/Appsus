@@ -1,13 +1,14 @@
 import { emailService } from '../services/email.service.js';
-
+import { eventBus } from '../../../../services/event-bus-service.js';
 export default {
     props: ['email'],
     components: {
         emailService,
+        eventBus
     },
     template: `
         <div class="email-preview"  @click="setDetails(email.id)" @mouseover="hover = true"  @mouseleave="hover = false">
-        <p class="far fa-star" :class="{checked:isSelect}" @click.stop="changeColor"></p>
+        <p class="far fa-star" :class="{checked:email.isStar}" @click.stop="changeColor(email)"></p>
            <p>{{email.subject}}</p>
            <p>{{emailDescription}}</p>
            <p>{{email.sentAt}}</p>
@@ -20,7 +21,7 @@ export default {
     `,
     data() {
         return {
-            isSelect : false,
+            // isSelect : false,
             hover: false,
         }
     },
@@ -38,8 +39,13 @@ export default {
         }
     },
     methods: {
-        changeColor(){
-            this.isSelect  = !this.isSelect 
+        changeColor(email){
+            // this.isSelect  = !this.isSelect 
+            email.isStar = !email.isStar
+            emailService.save(email)
+                .then(()=>{
+                    eventBus.$emit('refresh')
+                })
         },
         deleteEmail(emailId) {
             console.log(emailId);
@@ -53,6 +59,7 @@ export default {
         setDetails(id) {
             this.email.isRead = !this.email.isRead
             this.$router.push(`/mail/${id}`)
+            this.$emit('refresh');
         }
     },
 
