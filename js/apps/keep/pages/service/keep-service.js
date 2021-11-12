@@ -1,11 +1,12 @@
 import { utilService } from '../../../../../services/util-service.js';
 import { storageService } from '../../../../../services/async-storage-service.js';
+// import { secrets } from '../../../../../.git.js';
 
 
 const NOTE_KEY = 'note';
-const Tube_KEY = 'AIzaSyDFP3SASYNHeIccEYCJT943kU9tP_7OM9I'
 var gNote = _createNotes()
-
+const Tube_KEY = 'AIzaSyDFP3SASYNHeIccEYCJT943kU9tP_7OM9I'
+    // console.log(Tube_KEY);
 export const noteService = {
     query,
     getById,

@@ -17,42 +17,43 @@ export default {
                 <input class="new-note-title" v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >    
 
                 <div class="start-show">
+                                
                     <input v-model="newNote.info.subtitle" type="text" placeholder="write a note" @click="longNote">
                     <i class="fas fa-plus" @click="add"></i>
-
-
                     
                 </div>
             
-            <div class='icons-new-note'  v-show="editNewNote">
+                <div class='icons-new-note'  v-show="editNewNote">
                 
 
                
-                <select class="fas fa-palette" v-model="newNote.style.backgroundColor" id="select"  name="color" >
-                <option>white</option>
-                <option>coral</option>
-                <option>pink</option>
-                <option>blue</option>
-                <option>green</option>
-                <option>yellow</option>
-            </select>
+                    <select class="fas fa-palette" v-model="newNote.style.backgroundColor" id="select"  name="color" >
+                    <option>white</option>
+                    <option>coral</option>
+                    <option>pink</option>
+                    <option>blue</option>
+                    <option>green</option>
+                    <option>yellow</option>
+                    </select>
         
 
-                    <i class="fab fa-youtube" for="youtube"></i>
+                    <i class="fab fa-youtube" for="youtube" @click=search(beatles)></i>
                 
                     <i class="fas fa-list" for="list"></i>            
-                    <i class="fab fa-autoprefixer" for="palette"></i>
+                    <i class="fab fa-autoprefixer" for="palette" ></i>
 
                     <label class="far fa-image" for="file"  > 
                             <input  id="file" type="file" name="image"  @change="onImgInput" hidden/>
                         </label>
                     
-                    <img v-if="newNote.info.url" src="newNote.info.url">
+                    <img v-if="newNote.info.url" :src="newNote.info.url">
             
-            </div>
+                </div>
 
-        </div>
+            </div>
+            
             <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote" @update="update" ></note-list>
+    
         </section>
     `,
     data() {
@@ -86,7 +87,6 @@ export default {
             const file = e.target.files[0];
             this.newNote.info.url = URL.createObjectURL(file);
             // this.save(this.newNote)
-            console.log(this.newNote.info.url);
             // noteService.save(this.newNote)
         },
         removeNote(id) {
@@ -94,19 +94,19 @@ export default {
             noteService.remove(id)
                 .then(() => {
                     const msg = {
-                                    txt: 'Deleted successfully',
-                                    type: 'success'
-                                };
-                                eventBus.$emit('showMsg', msg);
+                        txt: 'Deleted successfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
                     this.notes = this.notes.filter(note => note.id !== id)
                 })
-                        .catch(err => {
-                            const msg = {
-                                txt: 'Error. Please try later',
-                                type: 'error'
-                            };
-                            eventBus.$emit('showMsg', msg);
-                        });
+                .catch(err => {
+                    const msg = {
+                        txt: 'Error. Please try later',
+                        type: 'error'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                });
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
@@ -130,6 +130,22 @@ export default {
         },
         longNote() {
             this.editNewNote = true
+        },
+        search(val) {
+            this.$emit('addTube');
+            noteService.getYoutubeVid(val)
+                .then(this.renderVideos)
+        },
+        renderVideos(videos) {
+            console.log('videos', videos);
+            var firstVid = videos[0].id.videoId;
+            this.onSelectedVid(firstVid);
+        },
+        onSelectedVid(id) {
+            console.log(id);
+            this.newNote.info.tube = `https://www.youtube.com/embed/${id}`;
+            console.log(this.newNote.info.tube);
+            this.update()
         },
     },
     computed: {
