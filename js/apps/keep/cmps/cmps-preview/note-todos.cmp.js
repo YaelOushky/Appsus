@@ -8,7 +8,7 @@ export default {
         <div class="todos-cmp cmp-smart" >
 
         <div class="note-cmp-smart">
-                <i  class="fas fa-thumbtack"></i>
+                <i  class="fas fa-thumbtack" @click="thumbtack"></i>
                 <i class="fas fa-backspace back" @click="closeModal" title="back"></i>
             </div>
 
@@ -124,6 +124,9 @@ export default {
             this.update()
             this.currTxt = noteService.getEmptyTodo()
         },
+        thumbtack() {
+            this.$emit('addPinned');
+        }
         // onImgInput(e) {
         //     const file = e.target.files[0];
         //     this.info.url = URL.createObjectURL(file);

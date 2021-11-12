@@ -75,6 +75,13 @@
 }
 
 
+/* tube-cmp */
+
+.tube-cmp-container .tube iframe {
+    width: 100%;
+}
+
+
 /* todos-cmp */
 
 .todos-cmp {

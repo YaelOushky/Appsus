@@ -6,14 +6,14 @@ export default {
         <div class="tube-cmp cmp-smart">
 
         <div class="tube-cmp-smart">
-                <i  class="fas fa-thumbtack"></i>
+                <i  class="fas fa-thumbtack" @click="thumbtack"></i>
                 <i class="fas fa-backspace" @click="closeModal" title="back"></i>
             </div>
 
         <div class="tube-cmp-container">
                     
                 <div class="tube">
-                    <iframe v-if="src" :src=src > </iframe>
+                    <iframe v-if="info.tube" :src=info.tube > </iframe>
                 </div>
                 <input :class=color type="text" v-model="info.title" @input="update"  placeholder="title"/>
                 
@@ -49,12 +49,11 @@ export default {
     },
     methods: {
         update() {
-            this.$emit('update', this.info, this.bcg);
+            this.$emit('update');
         },
         closeModal() {
             this.$emit('closeModal');
         },
-
         search(val) {
             console.log(val);
             noteService.getYoutubeVid(val)
@@ -67,7 +66,12 @@ export default {
         },
         onSelectedVid(id) {
             console.log(id);
-            this.src = `https://www.youtube.com/embed/${id}`;
+            this.info.tube = `https://www.youtube.com/embed/${id}`;
+            console.log(this.info.tube);
+            this.update()
+        },
+        thumbtack() {
+            this.$emit('addPinned');
         }
     },
     computed: {

@@ -5,6 +5,8 @@ export default {
            
             <input @input="filter" v-model="filterBy.title" type="text" placeholder="Search...">
         
+
+            
         </div>
     `,
     data() {

@@ -1,7 +1,9 @@
 export const utilService = {
     saveToStorage,
     loadFromStorage,
-    makeId
+    makeId,
+    lastSaveToStorage,
+    lastLoadFromStorage
 }
 
 function saveToStorage(key, value) {
@@ -20,4 +22,14 @@ function makeId(length = 5) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return txt;
+}
+
+
+function lastSaveToStorage(key, val) {
+    localStorage.setItem(key, JSON.stringify(val));
+}
+
+function lastLoadFromStorage(key) {
+    var val = localStorage.getItem(key);
+    return JSON.parse(val);
 }

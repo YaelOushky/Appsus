@@ -26,7 +26,9 @@ export default {
                         :bcg="note.style"                                                
                         :id="note.id"                                                
                         @update="update"
+                        @addPinned="addPinned"
                         @addList="addList"
+                        @addTube="addTube"
                         @removeTodo="removeTodo"
                         @closeModal="closeModal">
                     </component>
@@ -42,6 +44,7 @@ export default {
     },
     methods: {
         update() {
+            console.log(this.note);
             noteService.updateNote(this.note)
                 .then(() => eventBus.$emit('updating'))
         },
@@ -57,7 +60,16 @@ export default {
         },
         addList() {
             this.note.type = 'noteTodos'
-            this.update(this.note)
+            this.update()
+        },
+        addTube() {
+            this.note.type = 'noteTube'
+            this.update()
+        },
+        addPinned() {
+            this.note.isPinned = !this.note.isPinned
+            console.log('this.note.isPinned');
+            this.update()
         }
     },
     computed: {},

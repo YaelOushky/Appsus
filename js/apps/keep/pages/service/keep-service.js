@@ -43,6 +43,7 @@ function save(note) {
 function getEmptyNote() {
     return {
         type: 'noteTxt',
+        isPinned: false,
         info: {
             tube: '',
             url: '',
@@ -63,7 +64,6 @@ function getEmptyTodo() {
         txt: '',
         doneAt: null,
         createdAt: Date.now(),
-        importance: false,
     }
 }
 
@@ -72,12 +72,15 @@ const TUBE_KEY = 'vidsDB'
 function getYoutubeVid(val) {
     console.log(val);
     var vids = utilService.loadFromStorage(TUBE_KEY) || {}
-    if (vids && vids[val]) return Promise.resolve(vids[val])
+        // console.log();
+        // if (vids && vids[val]) 
+    return Promise.resolve(vids)
     return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${Tube_KEY}&q=${val}`)
         .then(res => {
             console.log('getting data from server');
             vids[val] = res.data.items
-            utilService.saveToStorage(TUBE_KEY)
+                // console.log(vids[val]);
+            utilService.saveToStorage(TUBE_KEY, vids[val])
             return res.data.items;
         })
 }
@@ -108,6 +111,7 @@ function _createNotes() {
             {
                 id: "n102",
                 type: "noteTxt",
+                isPinned: false,
                 info: {
                     tube: '',
                     url: '',
@@ -122,8 +126,9 @@ function _createNotes() {
             {
                 id: "n103",
                 type: "noteTube",
+                isPinned: false,
                 info: {
-                    tube: '',
+                    tube: 'https://www.youtube.com/embed/VP3xjJFfLS8',
                     url: '',
                     subtitle: '',
                     title: 'bla',
@@ -136,6 +141,7 @@ function _createNotes() {
             {
                 id: "n104",
                 type: "noteTodos",
+                isPinned: false,
                 info: {
                     tube: '',
                     url: '',
@@ -147,14 +153,12 @@ function _createNotes() {
                             txt: "Driving liscence",
                             doneAt: null,
                             createdAt: Date.now() + 50,
-                            importance: false,
                         },
                         {
                             id: utilService.makeId(),
                             txt: "Coding power",
                             doneAt: 187111111,
                             createdAt: Date.now(),
-                            importance: true,
                         }
                     ]
                 },

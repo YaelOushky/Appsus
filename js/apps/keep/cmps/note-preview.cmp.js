@@ -1,30 +1,40 @@
+import { noteService } from '../pages/service/keep-service.js';
+
 export default {
     props: ['note'],
     template: `
         <section class="note-preview" :class="bcg"  @mouseover="hover = true"
     @mouseleave="hover = false" @click="openEdit(note.id)">
       
-            <div v-show="hover" class="note-preview-icons">
-                <i  class="fas fa-thumbtack" @click.stop></i>
-                <i class="fas fa-backspace" @click.stop="remove"></i>
+            <div  class="note-preview-icons">
+                <i v-show="hover || note.isPinned" class="fas fa-thumbtack" @click.stop="thumbtack(note)"></i>
+                <i v-show="hover" class="fas fa-backspace" @click.stop="remove"></i>
             </div>
             
-            <div class="note-preview-container" >
+                <div class="note-preview-container" >
+
+                <div  class="tube">
+                    <iframe v-if="note.info.tube" :src=note.info.tube > </iframe>
+                </div>
+
                 <img v-if="note.info.url" :src=note.info.url  :id=note.id>
-                 <strong v-show="note.info.title">{{note.info.title}}</strong>
-                
-               <p v-show="note.info.subtitle"> {{note.info.subtitle}}</p>
-              
-               <ul v-show="note.info.todos">    
+               
+                <strong v-show="note.info.title">{{note.info.title}}</strong>
+               
+               <p v-show="note.info.subtitle"> {{note.info.subtitle}}</p>                              
+               
+                <ul v-show="note.info.todos">    
                     <li  v-for="(todo,idx) in note.info.todos" :key="idx">
                         <span :class={done:todo.doneAt} >{{todo.txt}}</span>
                         <i class="fas fa-times"></i>
                     </li>
                 </ul>
+            
+            
             </div>  
             <div v-show="hover" class="note-preview-edit" @click.stop>
                
-            <i class="fab fa-youtube" for="youtube" ></i>
+            <i class="fab fa-youtube" for="youtube"  @click=search(beatles) ></i>
                <i class="fas fa-list" for="list" @click=addList></i>            
                <i class="fab fa-autoprefixer" for="palette"></i>
               
@@ -54,7 +64,6 @@ export default {
             currNote: null,
             color: 'white',
             hover: false,
-
         };
     },
     created() {
@@ -68,10 +77,8 @@ export default {
         },
         setInput(ev) {
             this.answers = ev;
-            console.log('Survey Got ev', ev);
         },
         save(note) {
-            console.log('Survey Answers');
             this.$emit('save', note)
         },
         remove() {
@@ -81,10 +88,28 @@ export default {
             this.$emit('openEdit', noteId)
         },
         addList() {
-            console.log(this.note);
             this.note.type = 'noteTodos'
             this.save(this.note)
-        }
+        },
+        thumbtack(note) {
+            note.isPinned = !note.isPinned
+            this.save(note)
+        },
+        search(val) {
+            this.note.type = 'noteTube'
+            noteService.getYoutubeVid(val)
+                .then(this.renderVideos)
+        },
+        renderVideos(videos) {
+            console.log('videos', videos);
+            var firstVid = videos[0].id.videoId;
+            this.onSelectedVid(firstVid);
+        },
+        onSelectedVid(id) {
+            this.note.info.tube = `https://www.youtube.com/embed/${id}`;
+            console.log(this.note.info.tube);
+            this.save(this.note)
+        },
     },
     computed: {
         bcg() {

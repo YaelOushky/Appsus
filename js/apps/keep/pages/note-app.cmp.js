@@ -50,7 +50,7 @@ export default {
             </div>
 
         </div>
-            <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote" @update="update"></note-list>
+            <note-list :notes="notesToShow" @selected="selectNote" @remove="removeNote" @update="update" ></note-list>
         </section>
     `,
     data() {
@@ -124,10 +124,14 @@ export default {
         },
         longNote() {
             this.editNewNote = true
-        }
+        },
     },
     computed: {
         notesToShow() {
+            let pinnedNote = this.notes.filter(note => note.isPinned)
+            let NotPinnedNote = this.notes.filter(note => !note.isPinned)
+            console.log(pinnedNote.concat(NotPinnedNote));
+            return pinnedNote.concat(NotPinnedNote)
             if (!this.filterBy) return this.notes;
 
             // const searchStr = this.filterBy.title.toLowerCase();
