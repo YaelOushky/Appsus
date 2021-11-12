@@ -45,7 +45,7 @@ input {
   color: white;
   font-size: 30px;
   border-radius: 20px;
-  background-color:#ec01016e;
+  background-color:#ec01014d;
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -282,15 +282,7 @@ form {
   align-items: center;
 }
 
-/* .user-msg {
-  border-radius: 20px;
-  border: 0.5px solid gainsboro;
-  position: absolute;
-  top: 100px;
-  right: 50%;
-  padding: 15px;
-  background-color: rgb(209, 250, 200);
-} */
+
 
 /* app-footer */
 

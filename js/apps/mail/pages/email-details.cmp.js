@@ -1,5 +1,6 @@
 import { emailService } from '../services/email.service.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
+import { eventBus } from '../../../../services/event-bus-service.js';
 
 export default {
     components: {
@@ -8,15 +9,15 @@ export default {
     },
     template: `<main class="email-details-container">
         <section>
-        <email-filter @click="filter"/>
+        <email-filter @click.native="filter"/>
         </section>
         <section v-if="email" class="email-details app-main">
             <div class="email-title">
                 <p>{{email.subject}}</p>
                 <div class="email-icons">
-                    <i class="fas fa-share"></i>
+                    <i class="fas fa-share" @click="filter"></i>
                     <i class="fas fa-paper-plane"></i>
-                    <i class="fas fa-trash"></i>
+                    <i class="fas fa-trash" @click="deleteEmail(email.id)"></i>
                 </div>
             </div>
             <div class="send-details">
@@ -48,7 +49,11 @@ export default {
     methods: {
         filter(){
             this.$router.push('/mail')
-        }
+        },
+        deleteEmail(emailId) {
+            eventBus.$emit('removeEmail', emailId);
+            this.filter()
+        },
     },
     computed: {
 

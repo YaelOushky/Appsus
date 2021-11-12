@@ -2,6 +2,9 @@ import { bookService } from '../../book/services/book-service.js';
 import { eventBus } from '../../../../services/event-bus-service.js';
 
 export default {
+    // component:{
+    //     eventBus
+    // },
     template: `
     
         <section class="book-add app-main" >

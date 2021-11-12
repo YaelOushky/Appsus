@@ -1,0 +1,9 @@
+.user-msg {
+    border-radius: 20px;
+    border: 0.5px solid gainsboro;
+    position: absolute;
+    top: 100px;
+    right: 50%;
+    padding: 15px;
+    background-color: rgb(209, 250, 200);
+  }

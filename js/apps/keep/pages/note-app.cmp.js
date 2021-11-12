@@ -93,26 +93,30 @@ export default {
             console.log(id);
             noteService.remove(id)
                 .then(() => {
-                    // const msg = {
-                    //                 txt: 'Deleted succesfully',
-                    //                 type: 'success'
-                    //             };
-                    //             eventBus.$emit('showMsg', msg);
+                    const msg = {
+                                    txt: 'Deleted successfully',
+                                    type: 'success'
+                                };
+                                eventBus.$emit('showMsg', msg);
                     this.notes = this.notes.filter(note => note.id !== id)
                 })
-                //         .catch(err => {
-                //             console.log('err', err);
-                //             const msg = {
-                //                 txt: 'Error. Please try later',
-                //                 type: 'error'
-                //             };
-                //             eventBus.$emit('showMsg', msg);
-                //         });
+                        .catch(err => {
+                            const msg = {
+                                txt: 'Error. Please try later',
+                                type: 'error'
+                            };
+                            eventBus.$emit('showMsg', msg);
+                        });
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
         add() {
+            const msg = {
+                txt: 'Add successfully',
+                type: 'success'
+            };
+            eventBus.$emit('showMsg', msg);
             noteService.save(this.newNote)
                 .then(() => {
                     this.loadNotes()

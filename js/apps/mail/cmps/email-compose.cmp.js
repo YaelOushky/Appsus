@@ -62,15 +62,30 @@ export default {
             clearInterval(this.myInterval)
             this.isOpen = false
             this.NewEmail.isDrafts = true
+            const msg = {
+                txt: 'Add To Your Drafts',
+                type: 'success'
+            };
+            eventBus.$emit('showMsg', msg);
         },
         saveDraft() {
             this.NewEmail.isSave = false
+<<<<<<< HEAD
                 // this.myInterval = setInterval(() => {
             emailService.save(this.NewEmail)
                 .then(() => {
                     eventBus.$emit('refresh');
                 })
                 // }, 5000);
+=======
+            this.myInterval = setInterval(() => {
+                emailService.save(this.NewEmail)
+                    .then(() => {
+                        eventBus.$emit('refresh');
+                    })
+            }, 5000);
+            
+>>>>>>> fc9b7c4e1ad61830b40df679c2c396ea6a0059fd
         },
         openModal() {
             this.isOpen = !this.isOpen
@@ -83,6 +98,11 @@ export default {
             this.NewEmail.isDrafts = false
             emailService.save(this.NewEmail)
                 .then(() => {
+                    const msg = {
+                        txt: 'Send successfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
                     eventBus.$emit('refresh');
                 })
         },

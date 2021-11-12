@@ -12,7 +12,7 @@ export default {
            <p>{{email.subject}}</p>
            <p>{{emailDescription}}</p>
            <p>{{email.sentAt}}</p>
-           <div>
+           <div class="icons-preview">
            <i class="fas fa-trash" v-if="hover" @click.stop="deleteEmail(email.id)" ></i>
            <i :class="setIcon" ></i>
             </div>
@@ -21,16 +21,17 @@ export default {
     `,
     data() {
         return {
-            // isSelect : false,
             hover: false,
         }
+    },
+    created() {
+       
     },
     watch: {
 
     },
     computed: {
         emailDescription() {
-            console.log(this.email.body);
             var cut = this.email.body.substring(0, 60)
             return cut
         },
@@ -40,20 +41,37 @@ export default {
         }
     },
     methods: {
-        changeColor(email){
-            // this.isSelect  = !this.isSelect 
+        changeColor(email) {
             email.isStar = !email.isStar
+            if (email.isStar) {
+                const msg = {
+                    txt: 'Add To Your Starred',
+                    type: 'success'
+                };
+                eventBus.$emit('showMsg', msg);
+            } else {
+                const msg = {
+                    txt: 'Remove From Your Starred',
+                    type: 'success'
+                };
+                eventBus.$emit('showMsg', msg);
+            }
             emailService.save(email)
-                .then(()=>{
+                .then(() => {
                     eventBus.$emit('refresh')
                 })
         },
         deleteEmail(emailId) {
-            console.log(emailId);
             if (!this.email.isTrash) {
+                console.log(emailId);
                 this.email.isTrash = true
                 emailService.save(this.email)
             } else {
+                const msg = {
+                    txt: 'Delete successfully',
+                    type: 'success'
+                };
+                eventBus.$emit('showMsg', msg);
                 this.$emit('remove', emailId);
             }
         },

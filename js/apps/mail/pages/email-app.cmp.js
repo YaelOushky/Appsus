@@ -28,6 +28,7 @@ export default {
         eventBus.$on('refresh', () => {
             this.loadMails()
         });
+<<<<<<< HEAD
         eventBus.$on('filterMail', this.setFilterSearch)
     },
     methods: {
@@ -35,6 +36,12 @@ export default {
             console.log(txt);
         },
 
+=======
+        eventBus.$on('removeEmail', this.deleteEmail)
+    },
+    methods: {
+      
+>>>>>>> fc9b7c4e1ad61830b40df679c2c396ea6a0059fd
         loadMails() {
             emailService.query()
                 .then(emails => {
@@ -45,13 +52,11 @@ export default {
             this.selectedMail = mail;
         },
         deleteEmail(emailId) {
+            console.log(emailId);
             emailService.remove(emailId)
                 .then(() => {
-                    // const msg = {
-                    //     txt: 'Deleted successfully',
-                    //     type: 'success'
-                    // };
                     this.emails = this.emails.filter(email => email.id !== emailId)
+<<<<<<< HEAD
                         // eventBus.$emit('showMsg', msg);
 
                 })
@@ -63,6 +68,11 @@ export default {
                 //     };
                 //     eventBus.$emit('showMsg', msg);
                 // });
+=======
+                    emailService.save(this.emails)
+                    console.log(  this.emails);
+                })
+>>>>>>> fc9b7c4e1ad61830b40df679c2c396ea6a0059fd
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
