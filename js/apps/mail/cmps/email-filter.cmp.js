@@ -2,6 +2,7 @@ import emailCompose from '../cmps/email-compose.cmp.js';
 
 
 export default {
+    props:['counter'],
     components: {
         emailCompose,
     },
@@ -28,7 +29,9 @@ export default {
             <i class="fas fa-trash"></i>
                 <p>Trash</p>
             </div>
-          
+          <p>
+              {{counter}}%
+          </p>
         </div>
     `,
     data() {
@@ -41,7 +44,7 @@ export default {
                 sent: false,
                 drafts: false,
                 trash: false
-            }
+            },
 
         };
     },
@@ -58,5 +61,7 @@ export default {
     changeColor() {
         this.isSelect = !this.isSelect
     },
-    computed: {}
+    computed: {
+       
+    }
 }

@@ -14,7 +14,7 @@ export default {
            <p>{{email.sentAt}}</p>
            <div class="icons-preview">
            <i class="fas fa-trash" v-if="hover" @click.stop="deleteEmail(email.id)" ></i>
-           <i :class="setIcon" ></i>
+           <i :class="setIcon" @click.stop="toggleIcon"></i>
             </div>
            <!-- <i class="fas fa-envelope-open" v-if="email.isRead"></i> -->
         </div>
@@ -38,9 +38,17 @@ export default {
         setIcon() {
             if (this.email.isRead) return 'fas fa-envelope-open'
             return 'fas fa-envelope'
-        }
+        },
+
     },
     methods: {
+        toggleIcon() {
+            this.email.isRead = !this.email.isRead
+            emailService.save(email)
+            .then(() => {
+                eventBus.$emit('refresh')
+            })
+        },
         changeColor(email) {
             email.isStar = !email.isStar
             if (email.isStar) {
@@ -67,18 +75,18 @@ export default {
                 this.email.isTrash = true
                 emailService.save(this.email)
             } else {
-                const msg = {
-                    txt: 'Delete successfully',
-                    type: 'success'
-                };
-                eventBus.$emit('showMsg', msg);
+
                 this.$emit('remove', emailId);
             }
         },
         setDetails(id) {
-            this.email.isRead = !this.email.isRead
+            this.email.isRead = true
+            emailService.save(this.email)
+            .then(() => {
+                eventBus.$emit('refresh')
+            })
+            console.log(this.email.isRead);
             this.$router.push(`/mail/${id}`)
-            this.$emit('refresh');
         }
     },
 

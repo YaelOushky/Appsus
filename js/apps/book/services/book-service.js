@@ -462,7 +462,7 @@ function addReview(review, bookId) {
     return getById(bookId)
         .then(book => {
             if (!book.reviews) book.reviews = []
-            review.id = storageService._makeId()
+            review.id = utilService.makeId()
             book.reviews.push(review)
             return storageService.put(BOOKS_KEY, book)
                 .then((updatedBook) => {
@@ -486,14 +486,13 @@ function getPreviousBookId(bookId) {
     return query()
         .then(books => {
             const idx = books.findIndex(book => book.id === bookId);
-            return (idx === books.length - 1) ? books[0].id : books[idx - 1].id;
+            return (idx === 0) ? books[books.length - 1].id : books[idx - 1].id;
         });
 }
 
 function searchBooks(name) {
     return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${name}`)
         .then((res) => {
-            // console.log(res.data);
             return res.data
         })
 }

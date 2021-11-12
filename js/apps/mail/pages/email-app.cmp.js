@@ -12,7 +12,7 @@ export default {
     },
     template: `
         <section class="email-app app-main">
-            <email-filter @filtered="setFilter" />
+            <email-filter @filtered="setFilter" :counter="counter"/>
            
             <email-list :emails="MailToShow" @selected="selectMail"  @remove="deleteEmail"/>
         </section>
@@ -22,15 +22,18 @@ export default {
             emails: null,
             selectedMail: null,
             filterBy: '',
+            counter: 0,
         };
     },
     created() {
         this.loadMails();
         eventBus.$on('refresh', () => {
             this.loadMails()
+
         });
         eventBus.$on('filterMail', this.setFilterSearch);
         eventBus.$on('removeEmail', this.deleteEmail)
+
     },
     methods: {
 
@@ -38,6 +41,7 @@ export default {
             emailService.query()
                 .then(emails => {
                     this.emails = emails
+                    this.countOpen()
                 });
         },
         selectMail(mail) {
@@ -50,6 +54,11 @@ export default {
                     this.emails = this.emails.filter(email => email.id !== emailId)
                     this.loadMails();
                     console.log(this.emails);
+                    const msg = {
+                        txt: 'Delete successfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
                 })
         },
         setFilter(filterBy) {
@@ -58,10 +67,20 @@ export default {
         setFilterSearch(txt) {
             this.filterBy = txt
         },
+        countOpen() {
+            let size = this.emails.length
+            let count = 0
+            let num = this.emails.forEach(email => {
+                if (email.isRead) count++
+            })
+            var res = count / size * 100
+            this.counter = res
+        },
 
 
     },
     computed: {
+      
         MailToShow() {
             if (!this.filterBy) return this.emails;
             if (this.filterBy === 'inbox') {
