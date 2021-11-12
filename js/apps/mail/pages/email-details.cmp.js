@@ -47,7 +47,7 @@ export default {
 
     },
     methods: {
-        filter(){
+        filter() {
             this.$router.push('/mail')
         },
         deleteEmail(emailId) {

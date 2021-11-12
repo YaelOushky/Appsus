@@ -51,11 +51,11 @@ export default {
     destroyed() {
         clearInterval(this.myInterval)
     },
-    watch: {
-        NewEmail(val) {
-            this.saveDraft()
-        }
-    },
+    // watch: {
+    //     NewEmail(val) {
+    //         this.saveDraft()
+    //     }
+    // },
 
     methods: {
         cancel() {
@@ -70,22 +70,12 @@ export default {
         },
         saveDraft() {
             this.NewEmail.isSave = false
-<<<<<<< HEAD
                 // this.myInterval = setInterval(() => {
             emailService.save(this.NewEmail)
                 .then(() => {
                     eventBus.$emit('refresh');
                 })
                 // }, 5000);
-=======
-            this.myInterval = setInterval(() => {
-                emailService.save(this.NewEmail)
-                    .then(() => {
-                        eventBus.$emit('refresh');
-                    })
-            }, 5000);
-            
->>>>>>> fc9b7c4e1ad61830b40df679c2c396ea6a0059fd
         },
         openModal() {
             this.isOpen = !this.isOpen
