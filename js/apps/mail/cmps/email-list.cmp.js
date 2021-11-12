@@ -18,7 +18,6 @@ export default {
     `,
     methods:{
         deleteEmail(emailId){
-            
             this.$emit('remove', emailId);
         }
     },

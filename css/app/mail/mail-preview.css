@@ -4,7 +4,7 @@
   grid-template-areas: "gmail-filter email-list ";
 }
 .email-list {
-  width: 1200px;
+  width: 1600px;
 }
 
 .email-list li {
@@ -27,6 +27,12 @@
   box-shadow: inset 0 -2px 0 0 rgb(100 121 143 / 12%);
 }
 
+/* .icons-preview i{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+} */
+
 .email-details {
   font-size: 20px;
   max-width: 900px;
@@ -40,7 +46,7 @@
 .email-details-container {
   justify-content: space-around;
   display: grid;
-  grid-template-areas: "gmail-filter  email-details";
+  grid-template-areas: "gmail-filter  email-details email-details email-details email-details";
 }
 
 .email-title {

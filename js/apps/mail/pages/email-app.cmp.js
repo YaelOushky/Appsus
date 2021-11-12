@@ -26,10 +26,12 @@ export default {
     created() {
         this.loadMails();
         eventBus.$on('refresh', () => {
-            this.loadMails() 
-        })
+            this.loadMails()
+        });
+        eventBus.$on('removeEmail', this.deleteEmail)
     },
     methods: {
+      
         loadMails() {
             emailService.query()
                 .then(emails => {
@@ -41,24 +43,13 @@ export default {
             this.selectedMail = mail;
         },
         deleteEmail(emailId) {
+            console.log(emailId);
             emailService.remove(emailId)
                 .then(() => {
-                    // const msg = {
-                    //     txt: 'Deleted successfully',
-                    //     type: 'success'
-                    // };
                     this.emails = this.emails.filter(email => email.id !== emailId)
-                    // eventBus.$emit('showMsg', msg);
-
+                    emailService.save(this.emails)
+                    console.log(  this.emails);
                 })
-            // .catch(err => {
-            //     console.log('err', err);
-            //     const msg = {
-            //         txt: 'Error. Please try later',
-            //         type: 'error'
-            //     };
-            //     eventBus.$emit('showMsg', msg);
-            // });
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
@@ -69,7 +60,7 @@ export default {
         MailToShow() {
             if (!this.filterBy) return this.emails;
             if (this.filterBy === 'inbox') {
-                return this.emails.filter(email => !email.isTrash && !email.isDrafts )
+                return this.emails.filter(email => !email.isTrash && !email.isDrafts)
             }
             if (this.filterBy === 'starred') {
                 return this.emails.filter(email => email.isStar)
