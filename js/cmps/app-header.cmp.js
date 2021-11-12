@@ -6,7 +6,7 @@ export default {
     template: `
         <header class="app-header">
             <div class="logo-container-img">
-                <img src="img/logo.png" v-if="isGmail">
+                <img src="img/logo.png" v-if="isGmail" class="gmail">
                
                 <div v-if="isKeep" class="logo-container">
                     <p> Keep</p>
@@ -18,7 +18,7 @@ export default {
                     <img class="logo" src="img/books.png" v-if="isBook">
                 </div>
                 
-                <div class="logo-container" v-if="isHome">
+                <div class="logo-container " v-if="isHome">
                     <p> Home</p>
                     <img class="logo" src="img/home.png" v-if="isHome">
                 </div>

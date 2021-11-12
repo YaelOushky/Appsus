@@ -29,8 +29,8 @@ export default {
             <i class="fas fa-trash"></i>
                 <p>Trash</p>
             </div>
-          <p>
-              {{counter}}%
+          <p class="filter">
+                <i class="fas fa-envelope-open-text"></i>  {{counter}}% 
           </p>
         </div>
     `,

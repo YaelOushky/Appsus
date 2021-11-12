@@ -9,40 +9,43 @@ export default {
         utilService
     },
     template: `
-    <section>
+    <section class="email-compose" >
         <p class="logo-plus" @click="openModal">Compose</p>
-<div class="new-mail" v-if="isOpen">
-    <p> New Message</p>
-   <div>
-        To: 
-        <input type="text" name="" id="" v-model="NewEmail.to" required>
-    </div>
-        <label >
-        Cc:
-        <input type="text" name="" id="" >
-        </label>
-        <label >
-        Bcc:
-        <input type="text" name="" id="" >
-        </label>
-  
-        <label >
-       Subject
-        <input type="text" name="" id="" v-model="NewEmail.subject" required>
-        </label>
-        <textarea class="free-txt"  type="text" placeholder="" cols="30" rows="20" v-model="NewEmail.title" required></textarea>
+        <transition name="slide-fade">
+        <div class="new-mail"  v-if="show">
+            <p> New Message</p>
+            <div class="input-line">
+                To: 
+                <input type="text"  v-model="NewEmail.to" required>
+            </div>
+            <!-- <label class="input-line">
+                Cc:
+                <input type="text"  >
+            </label>
+            <label class="input-line">
+                Bcc:
+                <input type="text"  >
+            </label> -->
+            <label class="input-line">
+                Subject
+                <input type="text" name="" id="" v-model="NewEmail.subject" required>
+            </label>
+            <textarea class="free-txt"  type="text" placeholder="" cols="30" rows="20" v-model="NewEmail.title" required></textarea>
+            <div class="email-compose-btn">
                 <button @click="addMail" >Send</button>
-                <button @click="cancel" >Cancel</button>
+                <button @click="cancel" class="btn-cancel">Cancel</button>
+            </div>
   
-</div>
+        </div>
+    </transition>
     </section>
-
     `,
     data() {
         return {
-            isOpen: false,
+            // isOpen: false,
             myInterval: null,
-            NewEmail: null
+            NewEmail: null,
+            show: false,
         };
     },
     created() {
@@ -51,16 +54,10 @@ export default {
     destroyed() {
         clearInterval(this.myInterval)
     },
-    // watch: {
-    //     NewEmail(val) {
-    //         this.saveDraft()
-    //     }
-    // },
-
     methods: {
         cancel() {
             clearInterval(this.myInterval)
-            this.isOpen = false
+            this.show = false
             this.NewEmail.isDrafts = true
             const msg = {
                 txt: 'Add To Your Drafts',
@@ -70,15 +67,15 @@ export default {
         },
         saveDraft() {
             this.NewEmail.isSave = false
-                // this.myInterval = setInterval(() => {
+            // this.myInterval = setInterval(() => {
             emailService.save(this.NewEmail)
                 .then(() => {
                     eventBus.$emit('refresh');
                 })
-                // }, 5000);
+            // }, 5000);
         },
         openModal() {
-            this.isOpen = !this.isOpen
+            this.show = !this.show
         },
         addMail() {
             clearInterval(this.myInterval)

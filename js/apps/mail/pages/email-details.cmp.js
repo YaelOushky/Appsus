@@ -7,9 +7,10 @@ export default {
         emailService,
         emailFilter
     },
-    template: `<main class="email-details-container">
+    template: `
+    <main class="email-details-container">
         <section>
-        <email-filter @click.native="filter"/>
+            <email-filter @click.native="filter"/>
         </section>
         <section v-if="email" class="email-details app-main">
             <div class="email-title">
@@ -26,11 +27,32 @@ export default {
                 <p>{{email.to}}</p>
                 <p>{{email.sentAt}}</p>
             </div>
-           <p v-for="p in email.title">
-               {{p}}
-           </p>
+            <div class="send-body">
+                <p v-for="p in email.title" >
+                    {{p}}
+                </p>
+            </div>
+            <pre>
+        
+
+
+
+            
+            Contact information: Expedia, Attn: EMC Team 1111 Expedia Group Way W., Seattle WA 98119.
+            Expedia cannot receive replies to this email.
+
+            CST# 2029030-50
+
+            Expedia Rewards terms and conditions apply
+
+            © 2021 Expedia, Inc. All rights reserved.
+            Expedia, Expedia Rewards, VIP Access and the Airplane logos are registered trademarks,
+            or trademarks, of Expedia, Inc. in the U.S. and/or other countries.
+            All other products are trademarks of their respective owners.
+
+            </pre>
         </section>
-</main>
+    </main>
     `,
     data() {
         return {
@@ -43,9 +65,6 @@ export default {
         emailService.getById(mailId)
             .then(email => this.email = email);
     },
-    watch: {
-
-    },
     methods: {
         filter() {
             this.$router.push('/mail')
@@ -54,8 +73,5 @@ export default {
             eventBus.$emit('removeEmail', emailId);
             this.filter()
         },
-    },
-    computed: {
-
     },
 }

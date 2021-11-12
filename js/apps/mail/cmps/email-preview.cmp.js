@@ -8,7 +8,7 @@ export default {
     },
     template: `
         <div class="email-preview"  @click="setDetails(email.id)" @mouseover="hover = true"  @mouseleave="hover = false">
-        <p class="far fa-star" :class="{checked:email.isStar}" @click.stop="changeColor(email)"></p>
+        <i class="far fa-star" :class="{checked:email.isStar}" @click.stop="changeColor(email)"></i>
            <p>{{email.subject}}</p>
            <p>{{emailDescription}}</p>
            <p>{{email.sentAt}}</p>
@@ -16,7 +16,6 @@ export default {
            <i class="fas fa-trash" v-if="hover" @click.stop="deleteEmail(email.id)" ></i>
            <i :class="setIcon" @click.stop="toggleIcon"></i>
             </div>
-           <!-- <i class="fas fa-envelope-open" v-if="email.isRead"></i> -->
         </div>
     `,
     data() {

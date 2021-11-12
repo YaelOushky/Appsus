@@ -31,17 +31,17 @@
   width: 30px;
 }
 .grid {
-    margin-inline-end: 20px;
+  margin-inline-end: 80px;
   width: 40px;
-  transition: width 2s, height 2s, transform 2s;
 }
 
-.logo-container-img{
-margin-inline-start: 20px;
+.logo-container-img .gmail{
+margin-inline-start: 80px;
 }
 
 
 .logo-container {
+  margin-inline-start: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,11 +52,13 @@ margin-inline-start: 20px;
   color: white;
   font-size: 26px;
 }
-
-/* .grid:hover {
-  width: 60px;
-  transform: rotate(180deg);
-} */
+.home-page {
+  font-size: xx-large;
+  text-align: center;
+}
+.home-page img{
+  
+}
 
 .slide-fade-enter-active {
   transition: all 0.3s ease;
@@ -74,7 +76,7 @@ margin-inline-start: 20px;
   position: absolute;
   background-color: rgba(252, 192, 192, 0.61);
   padding: 20px;
-  left: 96%;
+  left: 93%;
   top: 8%;
   gap: 10px;
   border-radius: 0px 10px 10px 10px;

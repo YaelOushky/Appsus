@@ -1,3 +1,5 @@
+/* email preview */
+
 .email-app {
   justify-content: space-between;
   display: grid;
@@ -14,12 +16,18 @@
 .email-preview {
   display: flex;
   border: 0.8px solid rgb(223, 222, 222);
-  padding: 20px;
+  padding: 15px;
   justify-content: space-between;
   background-color: rgba(233, 233, 233, 0.726);
-  margin-inline-end: 40px;
+  margin-inline-end: 80px;
+  cursor: pointer;
 }
-
+.email-preview p {
+  min-width: 344px;
+}
+/* .email-preview i {
+  min-width: 344px;
+} */
 .email-preview:hover {
   background-color: rgba(250, 250, 250, 0.911);
   box-shadow: inset 0 -2px 0 0 rgb(100 121 143 / 12%);
@@ -31,44 +39,9 @@ flex-direction: row;
 justify-content: space-around;
 } */
 
-.email-details {
-  font-size: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: rgba(238, 237, 237, 0.281);
-  gap: 10px;
-  /* height: 600px; */
-}
-
-.email-details-container {
-  justify-content: space-around;
-  display: grid;
-  grid-template-areas: "gmail-filter  email-details email-details email-details email-details";
-}
-
-.email-title {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.send-details {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  align-items: baseline;
- 
-}
-.email-details p {
-  text-align: center;
-  margin-top: 15px;
-}
 .gmail-filter {
   margin-top: 15px;
-  margin-inline-start: 40px;
+  margin-inline-start: 80px;
 }
 
 .filter {
@@ -98,15 +71,16 @@ justify-content: space-around;
   color: rgb(255, 255, 255);
 }
 
-.logo-plus{
+.logo-plus {
   display: flex;
   font-size: 20px;
   align-items: center;
   background-color: rgb(235, 236, 236);
   border-radius: 30px;
   margin-bottom: 5px;
-  padding: 5px;
   width: 150px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .logo-plus:before {
@@ -114,38 +88,140 @@ justify-content: space-around;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 32px;
-  content: '';
+  content: "";
   display: block;
   height: 48px;
-min-width: 56px;
+  min-width: 56px;
 }
 
-.new-mail{
+/* Compose */
+
+.new-mail {
+  border-radius: 10px 10px 0 0;
   border: 0.5px solid;
   z-index: 1;
-  gap: 10px;
   display: flex;
   flex-direction: column;
   position: absolute;
-  background-color: rgb(240, 238, 238);
   width: 400px;
-  bottom: 8%;
   left: 80px;
   height: 400px;
-  padding: 10px;
-
+  bottom: 8vh;
+  box-shadow: inset 0 -2px 0 0 rgb(100 121 143 / 12%);
 }
 
-.new-mail input{
+.new-mail p {
+  border-radius: 8px 8px 0 0;
+  color: white;
+  background-color: rgb(61, 61, 61);
+  padding: 10px;
+}
+
+.input-line {
+  color: gray;
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  border-bottom: 0.5px solid rgb(214, 214, 214);
+}
+.new-mail input {
   border: none;
   width: 80%;
   height: 100%;
 }
-.new-mail button{
+.new-mail input:focus {
+  outline: none;
+}
+.email-compose-btn {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
   border: none;
-background-color: rgb(68, 68, 248);
-width: 60px;
-height: 50px;
-color: white;
-border-radius: 8px;
+  width: 100%;
+  /* gap: 20px; */
+  justify-content: space-between;
+}
+.email-compose-btn button {
+  border: none;
+  background-color: rgb(68, 68, 248);
+  width: 60px;
+  height: 30px;
+  color: white;
+  border-radius: 8px;
+  margin-block-end: 10px;
+  margin-inline-start: 10px;
+  margin-inline-end: 10px;
+}
+
+.new-mail textarea {
+  border: none;
+}
+
+.new-mail textarea:focus {
+  outline: none;
+}
+/* email-details */
+
+.email-details {
+  font-size: 20px;
+  width: 1600px;
+  margin: 0 auto;
+  /* padding: 20px; */
+  padding-inline-end: 300px;
+  padding-inline-start: 300px;
+  background-color: rgba(238, 237, 237, 0.281);
+  gap: 10px;
+}
+
+.email-details-container {
+  justify-content: space-around;
+  display: grid;
+  grid-template-areas: "gmail-filter  email-details";
+}
+
+.email-title {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.email-icons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-bottom: 30px;
+  /* align-items: baseline; */
+}
+.email-details p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.send-details {
+  color: gray;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: baseline;
+  gap: 30px;
+}
+.send-body {
+  margin-top: 20px;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.email-details-container pre {
+  display: flex;
+  justify-content: center;
+  font-size: 10px;
+  color: gray;
 }
