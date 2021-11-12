@@ -32,7 +32,7 @@
 }
 .grid {
     margin-inline-end: 20px;
-  width: 50px;
+  width: 40px;
   transition: width 2s, height 2s, transform 2s;
 }
 

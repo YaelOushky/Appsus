@@ -7,6 +7,10 @@ export default {
                   <p> Keep</p>
                     <img src="img/logo-keep.png" v-if="isKeep">
                 </div>
+                <div v-if="isBook" class="logo-container">
+                  <p> Book</p>
+                    <img class="logo" src="img/books.png" v-if="isBook">
+                </div>
                 <div class="logo-container" v-if="isHome">
                 <p> Home</p>
                     <img class="logo" src="img/home.png" v-if="isHome">
@@ -23,6 +27,7 @@ export default {
             <router-link to="/" active-class="active-link" exact><img  @click="closeModal('isHome')" class="logo" src="img/home.png"/></router-link> 
             <router-link  to="/mail" on><img @click="closeModal('isGmail')" class="logo" src="img/gmail.png"/></router-link> 
             <router-link  to="/keep" @click="isKeep"><img @click="closeModal('isKeep')" class="logo" src="img/logo-keep.png"/></router-link>
+            <router-link  to="/book" @click="isBook"><img @click="closeModal('isBook')" class="logo" src="img/books.png"/></router-link>
         </div>
         </transition>
             </nav>
@@ -35,7 +40,8 @@ export default {
             show: false,
             isGmail: false,
             isKeep: false,
-            isHome: true
+            isHome: true,
+            isBook: false
         }
     },
     destroyed() {
@@ -51,20 +57,28 @@ export default {
         },
         changeLogo(is) {
             if (is === 'isGmail') {
-                
+                this.isBook = false
                 this.isGmail = true
-                this.isKeep = false,
+                this.isKeep = false
                 this.isHome = false
             }
             if (is === 'isKeep') {
                 this.isGmail = false
-                this.isKeep = true,
+                this.isKeep = true
                 this.isHome = false
+                this.isBook = false
             }
             if (is === 'isHome') {
                 this.isGmail = false
-                this.isKeep = false,
+                this.isKeep = false
                 this.isHome = true
+                this.isBook = false
+            }
+            if (is === 'isBook') {
+                this.isGmail = false
+                this.isKeep = false
+                this.isHome = false
+                this.isBook = true
             }
 
         }
