@@ -284,6 +284,14 @@
     border: none;
 }
 
+.icons-new-note img {
+    width: 30px;
+}
+
+.icons-new-note select {
+    max-height: 18px;
+}
+
 
 /* new-note-title */
 
