@@ -3,8 +3,7 @@ import { storageService } from '../../../../services/async-storage-service.js';
 
 const EMAILS_KEY = 'emails'
 
-const gMails = [
-    {
+const gMails = [{
         id: 'e101',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes Would love',
@@ -193,6 +192,7 @@ function getById(emailId) {
             return email
         })
 }
+
 function query() {
     return storageService.query(EMAILS_KEY);
 }

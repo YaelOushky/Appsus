@@ -3,7 +3,8 @@ export const utilService = {
     loadFromStorage,
     makeId,
     lastSaveToStorage,
-    lastLoadFromStorage
+    lastLoadFromStorage,
+    debounce,
 }
 
 function saveToStorage(key, value) {
@@ -33,3 +34,17 @@ function lastLoadFromStorage(key) {
     var val = localStorage.getItem(key);
     return JSON.parse(val);
 }
+
+function debounce(func, wait) {
+    let timeout;
+
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};

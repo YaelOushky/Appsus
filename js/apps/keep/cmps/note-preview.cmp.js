@@ -15,6 +15,7 @@ export default {
 
                 <div  class="tube">
                     <iframe v-if="note.info.tube" :src=note.info.tube > </iframe>
+
                 </div>
 
                 <img v-if="note.info.url" :src=note.info.url  :id=note.id>
@@ -34,9 +35,13 @@ export default {
             </div>  
             <div v-show="hover" class="note-preview-edit" @click.stop>
                
-            <i class="fab fa-youtube" for="youtube"  @click=search(beatles) ></i>
-               <i class="fas fa-list" for="list" @click=addList></i>            
-               <i class="fab fa-autoprefixer" for="palette"></i>
+            <i class="fab fa-youtube" for="youtube" @click="openEdit(note.id)"   ></i>
+            <!-- @click=search(beatles) -->
+            
+            <i class="fas fa-list" for="list" @click="openEdit(note.id)"></i>            
+            <!-- @click=addList  -->
+            
+            <i class="fab fa-autoprefixer" for="palette"></i>
               
                <label class="fas fa-palette" :for="note.id"></label>
                     <select  :id="note.id" v-model="note.style.backgroundColor"  @change.stop="save(note)" >
@@ -48,9 +53,7 @@ export default {
                         <option>yellow</option>
                     </select>
 
-                    <label class="far fa-image" :for="note.id" > 
-                    <input  :id="note.id" type="file" :name=note.id  @change="onImgInput" hidden/>
-                </label>
+                    <i class="far fa-image" for="palette" @click="openEdit(note.id)"></i>
                 
             </div>
                
@@ -71,6 +74,7 @@ export default {
     },
     methods: {
         onImgInput(e) {
+            console.log(this.currNote);
             const file = e.target.files[0];
             this.note.info.url = URL.createObjectURL(file);
             this.save(this.note)

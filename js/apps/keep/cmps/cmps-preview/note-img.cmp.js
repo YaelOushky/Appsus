@@ -1,12 +1,9 @@
 export default {
-    props: ['info', 'bcg'],
+    props: ['info', 'bcg', 'id'],
     template: `
         <div class="img-cmp cmp-smart">
         <a @click="closeModal" title="back" >X</a>
-        
-            <label>
-                {{info.title}}
-            </label>
+
                 <img v-if="info.url" :src="info.url" alt="">
         
         <input :class=color type="text" v-model="info.txt" @blur="update"  />

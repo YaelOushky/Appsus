@@ -14,17 +14,19 @@ export default {
         <section class="app-note app-main" v-if="notes">
             
             <div class=new-note-edit>
-        <input class="new-note-title" v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >    
+                <input class="new-note-title" v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >    
 
                 <div class="start-show">
                     <input v-model="newNote.info.subtitle" type="text" placeholder="write a note" @click="longNote">
                     <i class="fas fa-plus" @click="add"></i>
 
+
+                    
                 </div>
             
             <div class='icons-new-note'  v-show="editNewNote">
                 
-                <!-- <input v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" > -->
+
                
                 <select class="fas fa-palette" v-model="newNote.style.backgroundColor" id="select"  name="color" >
                 <option>white</option>

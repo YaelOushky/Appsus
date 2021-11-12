@@ -52,7 +52,7 @@ export default {
         clearInterval(this.myInterval)
     },
     watch: {
-        NewEmail: function (val) {
+        NewEmail(val) {
             this.saveDraft()
         }
     },
@@ -65,12 +65,12 @@ export default {
         },
         saveDraft() {
             this.NewEmail.isSave = false
-            this.myInterval = setInterval(() => {
-                emailService.save(this.NewEmail)
-                    .then(() => {
-                        eventBus.$emit('refresh');
-                    })
-            }, 5000);
+                // this.myInterval = setInterval(() => {
+            emailService.save(this.NewEmail)
+                .then(() => {
+                    eventBus.$emit('refresh');
+                })
+                // }, 5000);
         },
         openModal() {
             this.isOpen = !this.isOpen

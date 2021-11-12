@@ -20,21 +20,25 @@ export default {
         return {
             emails: null,
             selectedMail: null,
-            filterBy: null,
+            filterBy: '',
         };
     },
     created() {
         this.loadMails();
         eventBus.$on('refresh', () => {
-            this.loadMails() 
-        })
+            this.loadMails()
+        });
+        eventBus.$on('filterMail', this.setFilterSearch)
     },
     methods: {
+        bla(txt) {
+            console.log(txt);
+        },
+
         loadMails() {
             emailService.query()
                 .then(emails => {
                     this.emails = emails
-                    this.emailsToShow = emails
                 });
         },
         selectMail(mail) {
@@ -48,28 +52,32 @@ export default {
                     //     type: 'success'
                     // };
                     this.emails = this.emails.filter(email => email.id !== emailId)
-                    // eventBus.$emit('showMsg', msg);
+                        // eventBus.$emit('showMsg', msg);
 
                 })
-            // .catch(err => {
-            //     console.log('err', err);
-            //     const msg = {
-            //         txt: 'Error. Please try later',
-            //         type: 'error'
-            //     };
-            //     eventBus.$emit('showMsg', msg);
-            // });
+                // .catch(err => {
+                //     console.log('err', err);
+                //     const msg = {
+                //         txt: 'Error. Please try later',
+                //         type: 'error'
+                //     };
+                //     eventBus.$emit('showMsg', msg);
+                // });
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
-        }
+        },
+        setFilterSearch(txt) {
+            this.filterBy = txt
+        },
+
 
     },
     computed: {
         MailToShow() {
             if (!this.filterBy) return this.emails;
             if (this.filterBy === 'inbox') {
-                return this.emails.filter(email => !email.isTrash && !email.isDrafts )
+                return this.emails.filter(email => !email.isTrash && !email.isDrafts)
             }
             if (this.filterBy === 'starred') {
                 return this.emails.filter(email => email.isStar)
@@ -83,6 +91,19 @@ export default {
             if (this.filterBy === 'sent') {
                 return this.emails.filter(email => email.isSent)
             }
+            return this.blabla
+
+
         },
+
+        blabla() {
+            if (!this.filterBy) return this.emails = this.emails
+            let filter = this.emails.filter(email => {
+                return (email.subject.toLowerCase().includes(this.filterBy) ||
+                    email.body.toLowerCase().includes(this.filterBy))
+            })
+
+            return filter
+        }
     },
 }

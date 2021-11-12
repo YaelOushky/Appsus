@@ -9,8 +9,6 @@ export default {
                 <i  class="fas fa-thumbtack" @click="thumbtack"></i>
                 <i class="fas fa-backspace" @click="closeModal" title="back"></i>
             </div>
-        
-        {{info.url}}
         <div class="txt-cmp-container">
                 <img v-if="info.url" :src=info.url  :id=id >
                 
@@ -52,8 +50,7 @@ export default {
     },
     methods: {
         update() {
-            console.log(this.bcg.backgroundColor);
-            this.$emit('update', this.info, this.bcg);
+            this.$emit('update');
         },
         closeModal() {
             this.$emit('closeModal');
@@ -61,7 +58,7 @@ export default {
         onImgInput(e) {
             const file = e.target.files[0];
             this.info.url = URL.createObjectURL(file);
-            this.update
+            this.update()
         },
         addList() {
             this.$emit('addList');

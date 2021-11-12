@@ -5,7 +5,7 @@ export default {
     template: `
         <div class="tube-cmp cmp-smart">
 
-        <div class="tube-cmp-smart">
+        <div class="note-cmp-smart">
                 <i  class="fas fa-thumbtack" @click="thumbtack"></i>
                 <i class="fas fa-backspace" @click="closeModal" title="back"></i>
             </div>
