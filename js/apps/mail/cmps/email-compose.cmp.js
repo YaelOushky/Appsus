@@ -48,6 +48,7 @@ export default {
     methods: {
         cancel() {
             clearInterval(this.myInterval)
+            this.saveDraft()
             this.show = false
             this.NewEmail.isDrafts = true
             const msg = {
@@ -55,6 +56,7 @@ export default {
                 type: 'success'
             };
             eventBus.$emit('showMsg', msg);
+            this.NewEmail = emailService.getEmptyMail()
         },
         saveDraft() {
             this.NewEmail.isSave = false
@@ -82,6 +84,7 @@ export default {
                     eventBus.$emit('showMsg', msg);
                     eventBus.$emit('refresh');
                 })
+                this.NewEmail = emailService.getEmptyMail()
         },
 
     }

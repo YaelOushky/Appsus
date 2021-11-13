@@ -258,63 +258,6 @@ const gMails = [{
         isDrafts: false,
         isSent: false
     },
-    {
-        id: 'e112',
-        subject: 'One last chance! Get $50 to start investing',
-        body: 'Real Rewards by American Eagle',
-        title: [`Real Rewards by American Eagle & Aerie members earn points on purchases (after discounts and before taxes and fees) made at American Eagle Outfitters® and Aerie®. Click here for Real Rewards by American Eagle & Aerie terms and conditions. See Real Rewards by American Eagle & Aerie terms and conditions to end your membership in Real Rewards. If you end your membership, you will no longer receive your free benefits, points towards rewards and email updates.
-        `, `See the Real Rewards by American Eagle & Aerie Program terms and conditions for details at ae.com/realrewards/terms.
-
-        *Cardholder offers are subject to credit approval and a Real Rewards credit card must be used as the sole payment type. See here for details.
-        © 2021 AEO Management Co. All Rights Reserved.
-        `],
-        isRead: false,
-        sentAt: convertTimestamp(),
-        to: 'ae@e.ae.com',
-        sendBy: 'Real Rewards by AE & Aerie',
-        isStar: false,
-        isTrash: false,
-        isDrafts: false,
-        isSent: false
-    },
-    {
-        id: 'e113',
-        subject: 'Re-use your best content',
-        body: 'Re-use. Reformat .Really easily.',
-        title: [`Re-use. Reformat .Really easily.
-        Re-using the valuable information in your PDFs is as easy as saving a file with Acrobat Pro DC.
-        `, `Convert PDF files to editable Microsoft Word, Excel, PowerPoint files, even from your mobile phone or tablet. Spend less time reformatting complex documents – and stay productive wherever you are.
-        Buy now`,'Would love to catch up sometimes Would love to catch up sometimes ',`Adobe services, like Adobe Creative Cloud, are available only to users 13 and older. Use of Adobe services and applications requires agreement with the applicable Terms of Use and the Adobe Privacy Policy.
-
-        Adobe, Adobe Acrobat and the Adobe logo are either registered trademarks or trademarks of Adobe in the United States and/or other countries. All other trademarks are the property of their respective owners.
-        `],
-        isRead: false,
-        sentAt: convertTimestamp(),
-        to: 'mail@mail.adobe.com',
-        sendBy: 'Adobe Acrobat',
-        isStar: false,
-        isTrash: false,
-        isDrafts: false,
-        isSent: false
-    },
-    {
-        id: 'e114',
-        subject: 'Exclusive live EP + new My Universe remix',
-        body: 'NEW LIVE EP OUT TODAY',
-        title: [`Hello everyone. Following the band's venue-opening show at Seattle’s new Climate Pledge Arena last month, an exclusive Live EP has been released today. The four-track EP, Live From Climate Pledge Arena, features Viva La Vida and Fix You alongside two songs from the new album Music Of The Spheres. It's available now exclusively on Amazon Music	
-        `, `NEW GALANTIS REMIX OF MY UNIVERSE
-        `,`Today also sees the release of a new remix of My Universe by Swedish electronic super duo Galantis. The track is available to stream / download everywhere now
-        `,`The Coldplay Messenger`],
-        isRead: false,
-        sentAt: convertTimestamp(),
-        to: 'momo@momo.com',
-        sendBy: 'Wizz Air',
-        isStar: false,
-        isTrash: false,
-        isDrafts: false,
-        isSent: false
-    },
-    
 ]
 
 _createMails()

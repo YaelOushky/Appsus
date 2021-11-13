@@ -198,14 +198,18 @@
 /* note-list */
 
 .note-list {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
     gap: 20px;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 450px;
+    gap: 20px;
+    grid-auto-flow: dense;
 }
-
 
 /* edit-note */
 
