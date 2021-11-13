@@ -257,7 +257,7 @@ function _createNotes() {
                     todos: [],
                 },
                 style: {
-                    backgroundColor: 'blue'
+                    backgroundColor: 'white'
                 }
             },
             {
