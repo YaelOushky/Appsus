@@ -121,7 +121,7 @@
     max-width: 400px;
     left: 80px;
     height: 400px;
-    bottom: 8%;
+    margin-block-start: 250px;
     box-shadow: inset 0 -2px 0 0 rgb(100 121 143 / 12%);
 }
 
