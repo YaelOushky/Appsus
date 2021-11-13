@@ -125,7 +125,7 @@ function _createNotes() {
             },
             {
                 id: "n102",
-                type: "noteImg",
+                type: "noteTxt",
                 isPinned: false,
                 info: {
                     tube: '',
