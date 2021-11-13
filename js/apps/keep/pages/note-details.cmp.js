@@ -19,7 +19,7 @@ export default {
         noteTube
     },
     template: `
-        <section class='edit-note' :class="note.style.backgroundColor">
+        <section class='edit-note' :class="note.style.backgroundColor" >
                     <component   
                         :is="note.type" 
                         :info="note.info"                                                

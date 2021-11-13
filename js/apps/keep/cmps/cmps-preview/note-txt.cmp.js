@@ -8,7 +8,8 @@ export default {
         <div class="note-cmp-smart">
                 <i  class="fas fa-thumbtack" @click="thumbtack"></i>
                 <i class="fas fa-backspace" @click="closeModal" title="back"></i>
-            </div>
+        </div>
+        
         <div class="txt-cmp-container">
                 <img v-if="info.url" :src=info.url  :id=id >
                 

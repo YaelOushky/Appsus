@@ -73,9 +73,7 @@ const TUBE_KEY = 'vidsDB'
 function getYoutubeVid(val) {
     console.log(val);
     var vids = utilService.loadFromStorage(TUBE_KEY) || {}
-        // console.log();
-        // if (vids && vids[val]) 
-    return Promise.resolve(vids)
+    if (vids && vids[val]) return Promise.resolve(vids)
     return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${Tube_KEY}&q=${val}`)
         .then(res => {
             console.log('getting data from server');
@@ -95,8 +93,7 @@ function getYoutubeVid(val) {
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
-        notes = notes = [
-            {
+        notes = notes = [{
                 id: "n100",
                 type: "noteTxt",
                 isPinned: true,
@@ -146,7 +143,7 @@ function _createNotes() {
                 type: "noteTube",
                 isPinned: false,
                 info: {
-                    tube: 'https://www.youtube.com/embed/VP3xjJFfLS8',
+                    tube: 'https://www.youtube.com/embed/nxUw6B05pkc',
                     url: '',
                     subtitle: '',
                     title: 'bla',
@@ -196,7 +193,7 @@ function _createNotes() {
                             doneAt: 187111111,
                             createdAt: Date.now(),
                         },
-                        
+
                     ]
                 },
                 style: {
@@ -303,8 +300,23 @@ function _createNotes() {
                             doneAt: null,
                             createdAt: Date.now(),
                         },
-                        
+
                     ]
+                },
+                style: {
+                    backgroundColor: 'white'
+                }
+            },
+            {
+                id: "n110",
+                type: "noteTube",
+                isPinned: false,
+                info: {
+                    tube: 'https://www.youtube.com/embed/8XskjcJhFVY',
+                    url: '',
+                    subtitle: '',
+                    title: 'bla',
+                    todos: [],
                 },
                 style: {
                     backgroundColor: 'white'

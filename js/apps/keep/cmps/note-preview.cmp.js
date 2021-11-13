@@ -8,12 +8,14 @@ export default {
       
             <div  class="note-preview-icons">
                 <i v-show="hover || note.isPinned" class="fas fa-thumbtack" @click.stop="thumbtack(note)"></i>
+               
                 <i v-show="hover" class="fas fa-backspace" @click.stop="remove"></i>
             </div>
             
                 <div class="note-preview-container" >
 
                 <div  class="tube">
+                   
                     <iframe v-if="note.info.tube" :src=note.info.tube > </iframe>
 
                 </div>

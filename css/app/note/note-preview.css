@@ -39,6 +39,19 @@
     margin-top: 10px;
 }
 
+.note-preview .note-preview-container ul {
+    list-style: none;
+    padding-inline-start: 0;
+    padding-inline-start: 10%;
+    width: 100%;
+}
+
+.note-preview .note-preview-container li {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
 
 /* note-preview-edit */
 
@@ -128,7 +141,23 @@
     border: 0.5px solid rgba(128, 128, 128, 0.609);
     border-radius: 10px;
     margin-bottom: 6px;
-    width: 80%;
+    width: 60%;
+}
+
+.todos-cmp-container {
+    width: 100%;
+}
+
+.todos-cmp-container ul {
+    list-style: none;
+    padding-inline-start: 10%;
+    width: 100%;
+}
+
+.todos-cmp-container li {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .todos-cmp-container input {

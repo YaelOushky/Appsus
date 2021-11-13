@@ -11,18 +11,24 @@ export default {
         noteList,
     },
     template: `
-        <section class="app-note app-main" v-if="notes">
-            
+        <section class="app-note app-main" v-if="notes"  >
+  
             <div class=new-note-edit>
                 <input class="new-note-title" v-model="newNote.info.title" type="text" placeholder="Title" v-show="editNewNote" >    
 
                 <div class="start-show">
                                 
                     <input v-model="newNote.info.subtitle" type="text" placeholder="write a note" @click="longNote">
-                    <i class="fas fa-plus" @click="add"></i>
-                    
+                    <i class="fas fa-plus" @click="add" v-if="editNewNote"></i>                    
+
                 </div>
             
+                <div class="search-tube" v-show=isTubeMode>
+
+                    <input class="new-note-tube"  type="text" placeholder="Search in youtube" v-model="searchTubeMode"> 
+                    <i class="fas fa-search" @click="search"></i>
+                </div>
+
                 <div class='icons-new-note'  v-show="editNewNote">
                 
 
@@ -37,7 +43,7 @@ export default {
                     </select>
         
 
-                    <i class="fab fa-youtube" for="youtube" @click=search(armin)></i>
+                    <i class="fab fa-youtube" for="youtube" @click=tubeMode></i>
                 
                     <i class="fas fa-list" for="list"></i>            
                     <i class="fab fa-autoprefixer" for="palette" ></i>
@@ -62,6 +68,8 @@ export default {
             filterBy: null,
             newNote: null,
             editNewNote: false,
+            isTubeMode: false,
+            searchTubeMode: '',
         };
     },
     created() {
@@ -112,18 +120,21 @@ export default {
             this.filterBy = filterBy;
         },
         add() {
-            const msg = {
-                txt: 'Add successfully',
-                type: 'success'
-            };
-            eventBus.$emit('showMsg', msg);
             noteService.save(this.newNote)
                 .then(() => {
                     this.loadNotes()
                     this.newNote = noteService.getEmptyNote()
                 })
+            this.editNewNote = false
+
+            const msg = {
+                txt: 'Add successfully',
+                type: 'success'
+            };
+            eventBus.$emit('showMsg', msg);
 
         },
+
         update(note) {
             noteService.updateNote(note)
                 .then(console.log(this.notes))
@@ -131,9 +142,14 @@ export default {
         longNote() {
             this.editNewNote = true
         },
-        search(val) {
-            this.$emit('addTube');
-            noteService.getYoutubeVid(val)
+        tubeMode() {
+            this.newNote.type = "noteTube"
+            this.isTubeMode = true
+            console.log(this.newNote);
+        },
+        search() {
+            console.log(this.searchTubeMode);
+            noteService.getYoutubeVid(this.searchTubeMode)
                 .then(this.renderVideos)
         },
         renderVideos(videos) {
@@ -145,7 +161,8 @@ export default {
             console.log(id);
             this.newNote.info.tube = `https://www.youtube.com/embed/${id}`;
             console.log(this.newNote.info.tube);
-            this.update()
+            this.add()
+            this.searchTubeMode = ''
         },
     },
     computed: {
@@ -154,7 +171,6 @@ export default {
             let NotPinnedNote = this.notes.filter(note => !note.isPinned)
             console.log(pinnedNote.concat(NotPinnedNote));
             return pinnedNote.concat(NotPinnedNote)
-            if (!this.filterBy) return this.notes;
 
             // const searchStr = this.filterBy.title.toLowerCase();
             // const sortByTitle = this.books.filter(book => {

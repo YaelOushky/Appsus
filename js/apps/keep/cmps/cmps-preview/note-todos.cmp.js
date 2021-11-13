@@ -8,40 +8,15 @@ export default {
         <div class="todos-cmp cmp-smart" >
 
         <div class="note-cmp-smart">
-                <i  class="fas fa-thumbtack" @click="thumbtack"></i>
-                <i class="fas fa-backspace back" @click="closeModal" title="back"></i>
-            </div>
+            <i  class="fas fa-thumbtack" @click="thumbtack"></i>
+            <i class="fas fa-backspace back" @click="closeModal" title="back"></i>
+        </div>
 
-            <!-- <label>
-                <template v-for="(todo,idx) in info.todos">                                      
-                                               
-                <div> 
-                    <span @click="editTodo(idx)" v-show="false" :class=color>{{todo.txt}}</span>
-                    
-                    <input v-show="true" :class=color type="text" v-model="todo.txt" @input="update" />
-                
-                    <a @click="remove(idx)" title="remove" >X</a>
-                    
-                    
-                </div>
-
-            </template>
-            </label> -->
-            <!-- <select v-model="sortBy.active">
-            <option>All</option>
-            <option>Active</option>
-            <option>Done</option>
-        </select>
-
-        <select v-model="sortBy.category"  @change="getTodosForDisplaySort">
-            <option>importance</option>
-            <option>created</option>
-        </select> -->
         <div class="todos-cmp-container">
 
             <img v-if="info.url" :src=info.url  :id=id >
             
-            <ul>    
+                <ul>    
                     <li  v-for="(todo,idx) in info.todos" :key="idx">
                         <span :class={done:todo.doneAt} @click="onToggleTodo(todo.id)">{{todo.txt}}</span>
                         <i class="fas fa-times" @click="remove(idx)" title="remove"></i>
