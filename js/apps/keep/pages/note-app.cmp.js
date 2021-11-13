@@ -148,12 +148,10 @@ export default {
             console.log(this.newNote);
         },
         search() {
-            console.log(this.searchTubeMode);
             noteService.getYoutubeVid(this.searchTubeMode)
                 .then(this.renderVideos)
         },
         renderVideos(videos) {
-            console.log('videos', videos);
             var firstVid = videos[0].id.videoId;
             this.onSelectedVid(firstVid);
         },

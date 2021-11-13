@@ -32,8 +32,8 @@ export default {
     },
     computed: {
         emailDescription() {
-            var cut = this.email.body.substring(0, 60)
-            return cut
+            var cut = this.email.body.substring(0, 20)
+            return cut + '...'
         },
         setIcon() {
             if (this.email.isRead) return 'fas fa-envelope-open'
@@ -43,11 +43,11 @@ export default {
     },
     methods: {
         toggleIcon(email) {
-          email.isRead = !email.isRead
+            email.isRead = !email.isRead
             emailService.save(email)
-            .then(() => {
-                eventBus.$emit('refresh')
-            })
+                .then(() => {
+                    eventBus.$emit('refresh')
+                })
         },
         changeColor(email) {
             email.isStar = !email.isStar
@@ -73,9 +73,9 @@ export default {
             if (!this.email.isTrash) {
                 this.email.isTrash = true
                 emailService.save(this.email)
-                .then(() => {
-                    eventBus.$emit('refresh')
-                })
+                    .then(() => {
+                        eventBus.$emit('refresh')
+                    })
             } else {
                 this.$emit('remove', emailId);
             }
@@ -83,9 +83,9 @@ export default {
         setDetails(id) {
             this.email.isRead = true
             emailService.save(this.email)
-            .then(() => {
-                eventBus.$emit('refresh')
-            })
+                .then(() => {
+                    eventBus.$emit('refresh')
+                })
             console.log(this.email.isRead);
             this.$router.push(`/mail/${id}`)
         }

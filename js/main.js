@@ -7,10 +7,10 @@ const options = {
     el: '#app',
     router,
     template: `
-        <section>
+        <section class="container">
             <app-header />
             <user-msg />
-            <router-view />
+            <router-view class="router-view" />
             <app-footer />
         </section>
     `,
