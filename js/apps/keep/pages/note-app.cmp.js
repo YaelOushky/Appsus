@@ -37,7 +37,7 @@ export default {
                     </select>
         
 
-                    <i class="fab fa-youtube" for="youtube" @click=search(beatles)></i>
+                    <i class="fab fa-youtube" for="youtube" @click=search(armin)></i>
                 
                     <i class="fas fa-list" for="list"></i>            
                     <i class="fab fa-autoprefixer" for="palette" ></i>

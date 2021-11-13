@@ -41,7 +41,7 @@ export default {
     data() {
         return {
             src: '',
-            beatles: 'beatles'
+            beatles: 'armin'
         };
     },
     created() {

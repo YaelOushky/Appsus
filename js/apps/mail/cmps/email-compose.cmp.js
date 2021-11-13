@@ -18,14 +18,6 @@ export default {
                 To: 
                 <input type="text"  v-model="NewEmail.to" required>
             </div>
-            <!-- <label class="input-line">
-                Cc:
-                <input type="text"  >
-            </label>
-            <label class="input-line">
-                Bcc:
-                <input type="text"  >
-            </label> -->
             <label class="input-line">
                 Subject
                 <input type="text" name="" id="" v-model="NewEmail.subject" required>
@@ -42,7 +34,6 @@ export default {
     `,
     data() {
         return {
-            // isOpen: false,
             myInterval: null,
             NewEmail: null,
             show: false,

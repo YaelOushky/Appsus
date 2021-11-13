@@ -83,6 +83,7 @@ margin-inline-start: 80px;
   display: flex;
   flex-direction: column;
   box-shadow: 3px 3px 3px #888888;
+  z-index: 1;
 }
 
 .grid-modal .logo:hover {

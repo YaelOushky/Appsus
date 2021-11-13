@@ -95,14 +95,31 @@ function getYoutubeVid(val) {
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
-        notes = notes = [{
-                id: "n101",
+        notes = notes = [
+            {
+                id: "n100",
                 type: "noteTxt",
                 isPinned: true,
                 info: {
                     tube: '',
+                    url: 'img/bobby.jpg',
+                    subtitle: '',
+                    title: "Bobby & Me  ",
+                    todos: [],
+                },
+                style: {
+                    backgroundColor: 'white'
+                }
+            },
+            {
+                id: "n101",
+                type: "noteTxt",
+                isPinned: false,
+                info: {
+                    tube: '',
                     url: '',
-                    subtitle: "Fullstack Me Baby!",
+                    title: "Wedding NOV",
+                    subtitle: "Noa wedding 20.11  ",
                     todos: [],
                 },
                 style: {
@@ -115,9 +132,9 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     tube: '',
-                    url: '',
+                    url: 'img/vacation.jpg',
                     subtitle: '',
-                    title: "Bobi and Me",
+                    title: "Costa Rica ",
                     todos: [],
                 },
                 style: {
@@ -148,25 +165,151 @@ function _createNotes() {
                     url: '',
                     subtitle: '',
                     label: "Get my stuff together",
-                    title: "Bobi and Me",
+                    title: "Groceries",
                     todos: [{
                             id: utilService.makeId(),
-                            txt: "Driving liscence",
+                            txt: "milk",
                             doneAt: null,
                             createdAt: Date.now() + 50,
                         },
                         {
                             id: utilService.makeId(),
-                            txt: "Coding power",
+                            txt: "bamba",
                             doneAt: 187111111,
                             createdAt: Date.now(),
-                        }
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "black coffee",
+                            doneAt: 187111111,
+                            createdAt: Date.now(),
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "Tehina",
+                            doneAt: 187111111,
+                            createdAt: Date.now(),
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "honey",
+                            doneAt: 187111111,
+                            createdAt: Date.now(),
+                        },
+                        
                     ]
                 },
                 style: {
                     backgroundColor: 'white'
                 }
-            }
+            },
+            {
+                id: "n105",
+                type: "noteTxt",
+                isPinned: false,
+                info: {
+                    tube: '',
+                    url: 'img/baby.jpg',
+                    subtitle: '',
+                    title: "My Baby ",
+                    todos: [],
+                },
+                style: {
+                    backgroundColor: 'white'
+                }
+            },
+            {
+                id: "n106",
+                type: "noteTxt",
+                isPinned: false,
+                info: {
+                    tube: '',
+                    url: 'img/work.jpg',
+                    subtitle: '',
+                    title: "Work Is My Life  ",
+                    todos: [],
+                },
+                style: {
+                    backgroundColor: 'white'
+                }
+            },
+            {
+                id: "n107",
+                type: "noteTxt",
+                isPinned: false,
+                info: {
+                    tube: '',
+                    url: '',
+                    title: "Final Sprint Kickoff",
+                    subtitle: "30.11  ",
+                    todos: [],
+                },
+                style: {
+                    backgroundColor: 'white'
+                }
+            },
+            {
+                id: "n108",
+                type: "noteTxt",
+                isPinned: false,
+                info: {
+                    tube: '',
+                    url: '',
+                    title: "Password: aligator_33",
+                    subtitle: "  ",
+                    todos: [],
+                },
+                style: {
+                    backgroundColor: 'blue'
+                }
+            },
+            {
+                id: "n109",
+                type: "noteTodos",
+                isPinned: false,
+                info: {
+                    tube: '',
+                    url: '',
+                    subtitle: '',
+                    label: "Get my stuff together",
+                    title: "Movies",
+                    todos: [{
+                            id: utilService.makeId(),
+                            txt: "Two Distant Strangers",
+                            doneAt: null,
+                            createdAt: Date.now() + 50,
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "Love and Monsters",
+                            doneAt: null,
+                            createdAt: Date.now(),
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "Ex Machina",
+                            doneAt: null,
+                            createdAt: Date.now(),
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "His House",
+                            doneAt: null,
+                            createdAt: Date.now(),
+                        },
+                        {
+                            id: utilService.makeId(),
+                            txt: "My Octopus Teacher",
+                            doneAt: null,
+                            createdAt: Date.now(),
+                        },
+                        
+                    ]
+                },
+                style: {
+                    backgroundColor: 'white'
+                }
+            },
         ];
         utilService.saveToStorage(NOTE_KEY, notes)
     }
