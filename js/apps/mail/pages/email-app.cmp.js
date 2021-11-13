@@ -14,7 +14,7 @@ export default {
         <section class="email-app app-main">
             <email-filter @filtered="setFilter" :counter="counter"/>
            
-            <email-list :emails="MailToShow" @selected="selectMail"  @remove="deleteEmail" />
+            <email-list :emails="MailToShow"  @selected="selectMail"  @remove="deleteEmail" />
         </section>
     `,
     data() {
@@ -27,9 +27,9 @@ export default {
     },
     created() {
         this.loadMails();
+       
         eventBus.$on('refresh', () => {
             this.loadMails()
-
         });
         eventBus.$on('filterMail', this.setFilterSearch);
         eventBus.$on('removeEmail', this.deleteEmail)
@@ -74,17 +74,17 @@ export default {
                 if (email.isRead) count++
             })
             var res = count / size * 100
-            this.counter = Math.floor(res*10)/10
-            eventBus.$emit('counter',  this.counter);
+            this.counter = Math.floor(res * 10) / 10
+            eventBus.$emit('counter', this.counter);
         },
 
     },
     computed: {
-      
+
         MailToShow() {
             if (!this.filterBy) return this.emails;
             if (this.filterBy === 'inbox') {
-                return this.emails.filter(email => !email.isTrash && !email.isDrafts)
+                return this.emails.filter(email => !email.isTrash || !email.isDrafts)
             }
             if (this.filterBy === 'starred') {
                 return this.emails.filter(email => email.isStar)
@@ -99,8 +99,6 @@ export default {
                 return this.emails.filter(email => email.isSent)
             }
             return this.filterByTxt
-
-
         },
 
         filterByTxt() {

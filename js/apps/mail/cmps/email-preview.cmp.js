@@ -71,11 +71,12 @@ export default {
         },
         deleteEmail(emailId) {
             if (!this.email.isTrash) {
-                console.log(emailId);
                 this.email.isTrash = true
                 emailService.save(this.email)
+                .then(() => {
+                    eventBus.$emit('refresh')
+                })
             } else {
-
                 this.$emit('remove', emailId);
             }
         },
