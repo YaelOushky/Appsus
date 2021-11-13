@@ -14,7 +14,7 @@ export default {
         <section class="email-app app-main">
             <email-filter @filtered="setFilter" :counter="counter"/>
            
-            <email-list :emails="MailToShow" @selected="selectMail"  @remove="deleteEmail"/>
+            <email-list :emails="MailToShow" @selected="selectMail"  @remove="deleteEmail" />
         </section>
     `,
     data() {
@@ -74,9 +74,9 @@ export default {
                 if (email.isRead) count++
             })
             var res = count / size * 100
-            this.counter = res
+            this.counter = Math.floor(res*10)/10
+            eventBus.$emit('counter',  this.counter);
         },
-
 
     },
     computed: {

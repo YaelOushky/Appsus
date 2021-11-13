@@ -79,7 +79,6 @@ export default {
         },
         addMail() {
             clearInterval(this.myInterval)
-            console.log(this.NewEmail);
             this.openModal()
             this.NewEmail.isSent = true
             this.NewEmail.isDrafts = false

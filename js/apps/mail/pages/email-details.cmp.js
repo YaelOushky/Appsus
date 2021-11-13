@@ -10,7 +10,7 @@ export default {
     template: `
     <main class="email-details-container">
         <section>
-            <email-filter @click.native="filter"/>
+            <email-filter @click.native="filter" :counter="counter"/>
         </section>
         <section v-if="email" class="email-details app-main">
             <div class="email-title">
@@ -37,7 +37,7 @@ export default {
 
 
 
-            
+
             Contact information: Expedia, Attn: EMC Team 1111 Expedia Group Way W., Seattle WA 98119.
             Expedia cannot receive replies to this email.
 
@@ -58,12 +58,14 @@ export default {
         return {
             email: null,
             emailId: '',
+            counter: 0,
         };
     },
     created() {
         const { mailId } = this.$route.params;
         emailService.getById(mailId)
             .then(email => this.email = email);
+        eventBus.$on('counter', this.count);
     },
     methods: {
         filter() {
@@ -73,5 +75,8 @@ export default {
             eventBus.$emit('removeEmail', emailId);
             this.filter()
         },
+        count(val) {
+            this.counter = val
+        }
     },
 }

@@ -1,5 +1,6 @@
 import { emailService } from '../services/email.service.js';
 import { eventBus } from '../../../../services/event-bus-service.js';
+
 export default {
     props: ['email'],
     components: {
@@ -13,8 +14,8 @@ export default {
            <p>{{emailDescription}}</p>
            <p>{{email.sentAt}}</p>
            <div class="icons-preview">
-           <i class="fas fa-trash" v-if="hover" @click.stop="deleteEmail(email.id)" ></i>
-           <i :class="setIcon" @click.stop="toggleIcon"></i>
+           <i class="fas fa-trash"  :class={opacity:!hover} @click.stop="deleteEmail(email.id)" ></i>
+           <i :class="setIcon" @click.stop="toggleIcon(email)"></i>
             </div>
         </div>
     `,
@@ -41,8 +42,8 @@ export default {
 
     },
     methods: {
-        toggleIcon() {
-            this.email.isRead = !this.email.isRead
+        toggleIcon(email) {
+          email.isRead = !email.isRead
             emailService.save(email)
             .then(() => {
                 eventBus.$emit('refresh')
